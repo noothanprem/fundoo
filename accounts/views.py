@@ -54,7 +54,7 @@ class Register(GenericAPIView):
             key = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
 
             currentsite = get_current_site(request)
-            #currenturl=currentsite+'/activate/'+key+'/'
+            
             
             shortedtoken=get_surl(key)
             shortedtokenstr=str(shortedtoken)
