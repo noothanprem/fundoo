@@ -20,6 +20,8 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.contrib.auth.decorators import login_required
 import templates
+from django_short_url.views import get_surl
+from django_short_url.models import ShortURL
 
 
 class Register(GenericAPIView):
@@ -52,11 +54,18 @@ class Register(GenericAPIView):
             key = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
 
             currentsite = get_current_site(request)
+            #currenturl=currentsite+'/activate/'+key+'/'
+            
+            shortedtoken=get_surl(key)
+            shortedtokenstr=str(shortedtoken)
+            splittedshortedtokenstr=shortedtokenstr.split('/')
+            
+            
             mail_subject='Link to activate the account'
             mail_message = render_to_string('activate.html', {
                 'user': user.username,
                 'domain': get_current_site(request).domain,
-                'token': key,
+                'token': splittedshortedtokenstr[2],
             })
 
             recipient_email=['noothan627@gmail.com']
@@ -167,7 +176,7 @@ class ResetPassword(GenericAPIView):
 
     def post(self,request,**kwargs):
         token=kwargs['token']
-        print(kwargs,"xdfcsdsfsdfsdvf")
+
         #decoding the token and storing it into user_details
         user_details = jwt.decode(token, "secret")
         #getting the username from tokenl
@@ -200,8 +209,10 @@ class ResetPassword(GenericAPIView):
     
 
 def activate(request, token):
+    expandedtoken=ShortURL.objects.get(surl=token)
+    print(expandedtoken.lurl)
     #decoding the token and getting the datas
-    user_details = jwt.decode(token, 'secret', algorithms='HS256')
+    user_details = jwt.decode(expandedtoken.lurl, 'secret', algorithms='HS256')
     #getting the user name
     user_name = user_details['username']
     

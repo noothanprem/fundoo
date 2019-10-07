@@ -41,8 +41,11 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'corsheaders',
-    'accounts'
+    'accounts',
+    'django_short_url',
 ]
+
+DJANGO_SHORT_URL_REDIRECT_URL = ''
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
