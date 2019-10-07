@@ -33,12 +33,15 @@ class Register(GenericAPIView):
         username=request.data['username']
         email=request.data['email']
         password=request.data['password']
+
         if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
-            return HttpResponse('Username or email is already taken')
+            return HttpResponse(json.dumps({"message":"Username or email is already taken"}))
+        elif username=="" or password=='' or email=='':
+            return HttpResponse(json.dumps({"message":"Username or email is empty"}))
         else:
             try:
                 #Inserting a new row into the database
-                user = User.objects.create_user(username=username, password=password, email=email)
+                user = User.objects.create_user(username=username, email=email, password=password)
             except ObjectDoesNotExist as e:
                 print(e)
             
@@ -71,13 +74,15 @@ class Register(GenericAPIView):
             recipient_email=['noothan627@gmail.com']
             email=EmailMessage(mail_subject, mail_message, to=[recipient_email])
             try:
+
                 email.send()
                     
             except SMTPException as e:
                 print(e)
+                return HttpResponse(json.dumps("not vaild"))
 
-            return HttpResponse("Please check your mail for activating")
-
+            return HttpResponse(json.dumps({"message":"Please check your mail for activating"}))
+        return HttpResponse(json.dumps("not vaild"))
 
 class Login(GenericAPIView):
 
