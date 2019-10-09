@@ -35,9 +35,11 @@ class Register(GenericAPIView):
         password=request.data['password']
 
         if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
-            return HttpResponse(json.dumps({"message":"Username or email is already taken"}))
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            return HttpResponse(json.dumps({"message":"Username or email is already taken"}),status=404)
         elif username=="" or password=='' or email=='':
-            return HttpResponse(json.dumps({"message":"Username or email is empty"}))
+            print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
+            return HttpResponse(json.dumps({"message":"Username or email is empty"}),status=404)
         else:
             try:
                 #Inserting a new row into the database
@@ -82,7 +84,8 @@ class Register(GenericAPIView):
                 return HttpResponse(json.dumps("not vaild"))
 
             return HttpResponse(json.dumps({"message":"Please check your mail for activating"}))
-        return HttpResponse(json.dumps("not vaild"))
+        
+        return HttpResponse(json.dumps("not vaild"),status=404)
 
 class Login(GenericAPIView):
 
@@ -114,7 +117,7 @@ class Login(GenericAPIView):
             payload = {
             'username': json.dumps(username),
             }
-            z=json.dumps(payload)
+            #z=json.dumps(payload)
             
             key = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
             
@@ -126,7 +129,7 @@ class Login(GenericAPIView):
             smddata['data'] = [key]
             return HttpResponse(json.dumps(smddata))
         else:
-            return HttpResponse('Login Failed')
+            return HttpResponse('Login Failed',status=404)
 
 class ForgotPassword(GenericAPIView):
 
@@ -139,6 +142,7 @@ class ForgotPassword(GenericAPIView):
         try:
             #checking whether the user exists in the database or not
             if User.objects.filter(email=emailid).exists():
+            
                 #getting that user object
                 u = User.objects.get(email=emailid)
                 #storing the username and email as payload
@@ -146,6 +150,7 @@ class ForgotPassword(GenericAPIView):
                     'username': u.username,
                     'email': u.email
                 }
+                print(u.username,"hhhhhhhhhhhhhhhhhhhhhhh")
                 #generating the jwt token
                 jwt_token = {"token": jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')}
 
@@ -171,7 +176,7 @@ class ForgotPassword(GenericAPIView):
                 #return render(request, "accounts/resetmail.html")
 
             else:
-                return HttpResponse('Invalid Email id.. Try Once again')
+                return HttpResponse('Invalid Email id.. Try Once again',status=404)
                 
         except TypeError as e:
             print(e)
@@ -184,7 +189,7 @@ class ResetPassword(GenericAPIView):
 
         #decoding the token and storing it into user_details
         user_details = jwt.decode(token, "secret")
-        #getting the username from tokenl
+        #getting the username from token
         user_name = user_details['username']
         try:
             #getting the user object
@@ -195,7 +200,7 @@ class ResetPassword(GenericAPIView):
             #Taking the new password two times
             password = request.data['password']
         else:
-            return HttpResponse('Invalid User')
+            return HttpResponse('Invalid User',status=404)
         
         #checking whether the user wxists in the database or not
         if User.objects.filter(username=user_name).exists():
@@ -208,7 +213,7 @@ class ResetPassword(GenericAPIView):
             return HttpResponse('Passsword Changed Successfully')
         else:
             #If two passwords are not same, display passords doesn't match
-            return HttpResponse("Both the Passwords doesn't match")
+            return HttpResponse("Both the Passwords doesn't match",status=404)
     #return render(request, 'accounts/resetpassword.html')
 
     
@@ -233,9 +238,9 @@ def activate(request, token):
         user1.is_active = True
         #saving the user
         user1.save()
-        return HttpResponse("Registration Successful")
+        return HttpResponse("Registration Successful",status=404)
     else:
-        return HttpResponse('Registration Failed')
+        return HttpResponse('Registration Failed',status=404)
 
 
 
