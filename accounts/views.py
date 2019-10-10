@@ -22,7 +22,7 @@ from django.contrib.auth.decorators import login_required
 import templates
 from django_short_url.views import get_surl
 from django_short_url.models import ShortURL
-
+from .redisfunc import RedisOperations
 
 class Register(GenericAPIView):
     serializer_class = UserSerializer
@@ -35,10 +35,10 @@ class Register(GenericAPIView):
         password=request.data['password']
 
         if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
-            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+            
             return HttpResponse(json.dumps({"message":"Username or email is already taken"}),status=404)
         elif username=="" or password=='' or email=='':
-            print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
+            
             return HttpResponse(json.dumps({"message":"Username or email is empty"}),status=404)
         else:
             try:
@@ -120,8 +120,8 @@ class Login(GenericAPIView):
             #z=json.dumps(payload)
             
             key = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
-            
-            
+            ro=RedisOperations()
+            ro.save(key)
             # Token = jwt_token['token']
 
             smddata['success'] = True
