@@ -17,14 +17,19 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf.urls import url
 from rest_framework_swagger.views import get_swagger_view
-
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 schema_view = get_swagger_view(title='Pastebin API')
 urlpatterns = [
     path('admin/', admin.site.urls),
     #path('hello/', views.Login, name='hello'),
     url(r'^$', schema_view),
-    url('',include('accounts.urls'))
-    
+    url('',include('accounts.urls')),
+    # url(r'^api/', include('rest_framework_simplejwt.urls')),
+    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]

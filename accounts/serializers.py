@@ -26,3 +26,7 @@ class ResetPasswordSerializer(serializers.ModelSerializer):
         model=User
         fields=['password']
 
+class LogoutSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=User
+        fields=['username']

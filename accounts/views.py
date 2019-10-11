@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from .serializers import UserSerializer,LoginSerializer, ForgotPasswordSerializer,ResetPasswordSerializer
+from .serializers import UserSerializer,LoginSerializer, ForgotPasswordSerializer,ResetPasswordSerializer,LogoutSerializer
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
@@ -23,6 +23,8 @@ import templates
 from django_short_url.views import get_surl
 from django_short_url.models import ShortURL
 from .redisfunc import RedisOperations
+from .decorators import token_required
+import redis
 
 class Register(GenericAPIView):
     serializer_class = UserSerializer
@@ -89,9 +91,9 @@ class Register(GenericAPIView):
 
 class Login(GenericAPIView):
 
-
+    
     serializer_class = LoginSerializer
-
+    
     def post(self,request):
         
         username=request.data['username']
@@ -120,6 +122,7 @@ class Login(GenericAPIView):
             #z=json.dumps(payload)
             
             key = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
+            
             ro=RedisOperations()
             ro.save(key)
             # Token = jwt_token['token']
@@ -127,7 +130,8 @@ class Login(GenericAPIView):
             smddata['success'] = True
             smddata['message'] = "Login Successful"
             smddata['data'] = [key]
-            return HttpResponse(json.dumps(smddata))
+            response=HttpResponse(json.dumps(smddata))
+            return response
         else:
             return HttpResponse('Login Failed',status=404)
 
@@ -184,6 +188,7 @@ class ForgotPassword(GenericAPIView):
 class ResetPassword(GenericAPIView):
     serializer_class=ResetPasswordSerializer
 
+
     def post(self,request,**kwargs):
         token=kwargs['token']
 
@@ -216,7 +221,23 @@ class ResetPassword(GenericAPIView):
             return HttpResponse("Both the Passwords doesn't match",status=404)
     #return render(request, 'accounts/resetpassword.html')
 
-    
+class Logout(GenericAPIView):
+
+    serializer_class=LogoutSerializer    
+    @token_required
+  
+    def post(self,request):
+        print(request.data)
+        header=request.META['HTTP_AUTHORIZATION']
+        headerlist=header.split(" ")
+        token=headerlist[1]
+        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        r.delete(token)
+        return HttpResponse("Logout Successful")
+            
+
+            
+
 
 def activate(request, token):
     expandedtoken=ShortURL.objects.get(surl=token)
