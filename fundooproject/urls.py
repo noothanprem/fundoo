@@ -31,5 +31,6 @@ urlpatterns = [
     # url(r'^api/', include('rest_framework_simplejwt.urls')),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    url('',include('note.urls')),
 
 ]
