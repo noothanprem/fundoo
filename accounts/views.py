@@ -25,6 +25,9 @@ from django_short_url.models import ShortURL
 from .redisfunc import RedisOperations
 from .decorators import token_required
 import redis
+from .redisfunc import RedisOperations
+
+
 
 class Register(GenericAPIView):
     serializer_class = UserSerializer
@@ -98,7 +101,9 @@ class Login(GenericAPIView):
         
         username=request.data['username']
         password=request.data['password']
-        
+
+        if username == "" or password == '' :
+            return HttpResponse(json.dumps({"message": "Username or Password is empty"}), status=404)
         # Used to store the data in SMD(success,message,data) format
         smddata = {
             'success': False,
@@ -110,12 +115,11 @@ class Login(GenericAPIView):
             user = auth.authenticate(username=username, password=password)
         except ValueError as e:
             print(e)
-        
+
         if user is not None:
         
             auth.login(request, user)
             user=request.user
-            print(username)
             payload = {
             'username': json.dumps(username),
             }
@@ -142,6 +146,10 @@ class ForgotPassword(GenericAPIView):
     def post(self,request):
         
         emailid = request.data['email']
+
+        if emailid == '':
+
+            return HttpResponse(json.dumps({"message": "email is empty"}), status=404)
 
         try:
             #checking whether the user exists in the database or not
@@ -225,13 +233,14 @@ class Logout(GenericAPIView):
 
     serializer_class=LogoutSerializer    
     @token_required
-  
     def post(self,request):
-        print(request.data)
         header=request.META['HTTP_AUTHORIZATION']
         headerlist=header.split(" ")
         token=headerlist[1]
-        r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        #r = redis.StrictRedis(host='localhost', port=6379, db=0)
+        ro=RedisOperations()
+        r=ro.r
+        print (r,"redistokennnnnsdfnfnsnnwsnwsn")
         r.delete(token)
         return HttpResponse("Logout Successful")
             

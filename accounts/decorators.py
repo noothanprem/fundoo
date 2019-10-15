@@ -1,19 +1,18 @@
 import redis
 from django.http import HttpResponse
-
+from .redisfunc import RedisOperations
 rds = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 
 def token_required(view_func):
 
     def wrap(r,rs,*args, **kwargs):
-
-        print("dmsamc amcmmsadcs vmsv msmdv")
+        robj=RedisOperations()
+        rds=robj.r
         header=rs.META['HTTP_AUTHORIZATION']
         print(header)
         headerlist=header.split(" ")
         headertoken=headerlist[1]
-        print(headertoken,"headertokennnnn")
         redistoken=rds.get(headertoken)
         print(redistoken)
         if redistoken is not None:
