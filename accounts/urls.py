@@ -10,4 +10,5 @@ urlpatterns=[
     path('forgotpassword',views.ForgotPassword.as_view(),name='forgotpassword_view'),
     #path('<Token>/', views.verify, name='verify'),
     path('resetpassword/<token>/', views.ResetPassword.as_view(), name='resetpassword'),
+    path('logins',views.logins, name='logins'),
 ]
