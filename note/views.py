@@ -17,16 +17,27 @@ import json
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 import boto3
-from .serializer import UploadImageSerializer
+from .serializer import UploadImageSerializer, NoteShareSerializer
+
 
 # Create your views here.
 class UploadImage(GenericAPIView):
-    serializer_class=UploadImageSerializer
-    def post(self,request):
+    serializer_class = UploadImageSerializer
+
+    def post(self, request):
         try:
-            imgs=request.FILES.get('imgs')
+            imgs = request.FILES.get('imgs')
             s3 = boto3.resource('s3')
-            s3.meta.client.upload_fileobj(imgs,"hat123", "abc")
+            s3.meta.client.upload_fileobj(imgs, "hat123", "abc")
         except TypeError:
-            return HttpResponse("Upload unsuccessful",status=404)
+            return HttpResponse("Upload unsuccessful", status=404)
         return HttpResponse("Successful")
+
+
+class NoteShare(GenericAPIView):
+    serializer_class = NoteShareSerializer
+
+    def post(self, request):
+        title = request.data['title']
+        note = request.data['note']
+        return render(request, 'notesupload.html', {'title': title, 'note': note})

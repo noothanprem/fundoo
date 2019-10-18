@@ -273,7 +273,7 @@ def activate(request, token):
         return HttpResponse('Registration Failed',status=404)
 
 def logins(request):
-    return render(request, 'login.html')
+    return render(request, 'sociallogin.html')
 @login_required
 def home(request):
     return render(request, 'home.html')
