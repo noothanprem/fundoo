@@ -32,8 +32,8 @@ urlpatterns = [
     # url(r'^api/', include('rest_framework_simplejwt.urls')),
     # path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     # path('api/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    #url(r'^login/$', auth_views.LoginView, name='login'),
-    #url(r'^logout/$', auth_views.LogoutView, name='logout'),
+    url(r'^login/$', auth_views.LoginView, name='login'),
+    url(r'^logout/$', auth_views.LogoutView, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
     url('note/', include('note.urls')),
 

@@ -22,11 +22,14 @@ from django.contrib.auth.decorators import login_required
 import templates
 from django_short_url.views import get_surl
 from django_short_url.models import ShortURL
-from .redisfunc import RedisOperations
 from .decorators import token_required
 import redis
-from .redisfunc import RedisOperations
+from .Lib.redisfunc import RedisOperations
 from django.core.exceptions import PermissionDenied,ObjectDoesNotExist
+
+
+
+from accounts.service import user
 
 #API for registering the user
 class Register(GenericAPIView):
@@ -36,71 +39,22 @@ class Register(GenericAPIView):
 
     def post(self, request):
 
-        #getting the username,email and password
-        username=request.data['username']
-        email=request.data['email']
-        password=request.data['password']
+        #calling the register_user method in user.py
+        user_registration = user.register_user(request)
+        #return success message if the methurned returns success or else, return failure message
 
-        #checking whether the user name or email exists or not
-        if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
-            
-            return HttpResponse(json.dumps({"message":"Username or email is already taken"}),status=404)
-        #checking whether any field is empty or not
-        elif username=="" or password=='' or email=='':
-            
-            return HttpResponse(json.dumps({"message":"Username or email is empty"}),status=404)
+        message = {
+            "message": "",
+        }
+
+        if(user_registration == "success"):
+
+            return HttpResponse(user_registration)
         else:
-            try:
 
-                #Inserting a new row into the database
-                user = User.objects.create_user(username=username, email=email, password=password)
-            except ObjectDoesNotExist as e:
-                print(e)
-            
-            user.save()
-            user.is_active = False
-            user.save()
-            #storing username and email as payload in dictionary format
-            payload = {
-                'username': user.username,
-                'email': user.email
-            }
-            #creating the token
-            token = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
-
-            currentsite = get_current_site(request)
-            
-            #getting the shortened token using get_surl method
-            shortedtoken=get_surl(token)
-            #converting shortened token to string format
-            stringshortedtoken=str(shortedtoken)
-            #splitting string
-            splittedshortedtokenstr=stringshortedtoken.split('/')
-            
-            
-            mail_subject='Link to activate the account'
-            mail_message = render_to_string('activate.html', {
-                'user': user.username,
-                'domain': get_current_site(request).domain,
-                'token': splittedshortedtokenstr[2],
-            })
+            return HttpResponse(user_registration)
 
 
-            recipient_email=['noothan627@gmail.com']
-
-            #sending the mail
-            email=EmailMessage(mail_subject, mail_message, to=[recipient_email])
-            try:
-
-                email.send()
-                    
-            except SMTPException as e:
-                print(e)
-                return HttpResponse(json.dumps("not vaild"))
-
-            return HttpResponse(json.dumps({"message":"Please check your mail for activating"}))
-        
-        return HttpResponse(json.dumps("not vaild"),status=404)
 
 
 #API for login
@@ -158,7 +112,7 @@ class Login(GenericAPIView):
             #Sendin the response in Success Message Data(SMD) format
             smddata['success'] = True
             smddata['message'] = "Login Successful"
-            smddata['data'] = [key]
+            smddata['data'] = [token]
 
             try:
                 response=HttpResponse(json.dumps(smddata))
@@ -188,7 +142,7 @@ class ForgotPassword(GenericAPIView):
 
         #checking whether the user exists in the database or not
         if User.objects.filter(email=emailid).exists():
-            try
+            try:
                 #getting that user object
                 u = User.objects.get(email=emailid)
             except ObjectDoesNotExist as e:
@@ -298,17 +252,22 @@ class Logout(GenericAPIView):
         try:
             #getting the request header
             header=request.META['HTTP_AUTHORIZATION']
+            print (header,"hwhrhrhrhrhrhrhrhhrhrhhrhrhh")
             headerlist=header.split(" ")
             token=headerlist[1]
         except Exception:
             print ("Exception occured while getting the request header")
-        #r = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+        #creating the object for RedisOperations class
         try:
-            ro=RedisOperations()
+            redis_object=RedisOperations()
         except Exception:
             print ("Exception occured while creating object")
-        r=ro.r
+
+        r=redis_object.r
+        #deleting the token from redis
         r.delete(token)
+
         return HttpResponse("Logout Successful")
             
 

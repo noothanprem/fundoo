@@ -18,7 +18,7 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 import boto3
 from .serializer import UploadImageSerializer, NoteShareSerializer
-
+from .Lib.amazon_s3_file import upload_file
 
 # Create your views here.
 class UploadImage(GenericAPIView):
@@ -26,12 +26,18 @@ class UploadImage(GenericAPIView):
 
     def post(self, request):
         try:
-            imgs = request.FILES.get('imgs')
-            s3 = boto3.resource('s3')
-            s3.meta.client.upload_fileobj(imgs, "hat123", "abc")
-        except TypeError:
+            image = request.FILES.get('imgs')
+            print(image,"imaaaaaageeeeeeeeeeeeee")
+            #s3 = boto3.resource('s3')
+            #s3.meta.client.upload_fileobj(image, "hat123", "abc")
+            #uploadfileobject=UploadFile()
+            #print (uploadfileobject,"uploaaaaaaaaadddddddddddddddddddd")
+            response = upload_file(image)
+            if response == "success":
+                return  HttpResponse("success")
+        except Exception:
             return HttpResponse("Upload unsuccessful", status=404)
-        return HttpResponse("Successful")
+
 
 
 class NoteShare(GenericAPIView):
@@ -40,4 +46,6 @@ class NoteShare(GenericAPIView):
     def post(self, request):
         title = request.data['title']
         note = request.data['note']
+        if(title == "" or note == ""):
+            return HttpResponse("Please Fill the fields")
         return render(request, 'notesupload.html', {'title': title, 'note': note})
