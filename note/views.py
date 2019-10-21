@@ -20,7 +20,7 @@ import boto3
 from .serializer import UploadImageSerializer, NoteShareSerializer
 from .Lib.amazon_s3_file import upload_file
 
-# Create your views here.
+# API for uploading image
 class UploadImage(GenericAPIView):
     serializer_class = UploadImageSerializer
 
@@ -32,7 +32,10 @@ class UploadImage(GenericAPIView):
             #s3.meta.client.upload_fileobj(image, "hat123", "abc")
             #uploadfileobject=UploadFile()
             #print (uploadfileobject,"uploaaaaaaaaadddddddddddddddddddd")
+
+            #calls the upload_file() method inside Lib file
             response = upload_file(image)
+            #returns the resoonses
             if response == "success":
                 return  HttpResponse("success")
         except Exception:
@@ -40,12 +43,17 @@ class UploadImage(GenericAPIView):
 
 
 
+#API for sharing of notes
 class NoteShare(GenericAPIView):
+    #setting the serializer class
     serializer_class = NoteShareSerializer
 
     def post(self, request):
+        #getting the title and note from notesupload.html
         title = request.data['title']
         note = request.data['note']
+
+        #prompts the user if any of the field is empty
         if(title == "" or note == ""):
             return HttpResponse("Please Fill the fields")
         return render(request, 'notesupload.html', {'title': title, 'note': note})
