@@ -24,280 +24,308 @@ from django_short_url.models import ShortURL
 import os
 from accounts.Lib.redisfunc import RedisOperations
 from django.core.exceptions import PermissionDenied,ObjectDoesNotExist
+import os
+from jwt.exceptions import DecodeError
+from redis.exceptions import ConnectionError,AuthenticationError
 
 class UserOperations:
 
-    def register_user(self,request):
-
-        print (request.data["username"])
-        username = request.data['username']
-        email = request.data['email']
-        password = request.data['password']
-
-        message={
+    def smd_response(self,success,message,data):
+        response={
             "success":"",
             "message":"",
             "data":""
         }
-        print ("After smd formattttttttttttttttttttttttttttttttttttttt")
-        # checking whether the user name or email exists or not
-        if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
-            response={"message": "Username or email alredy exists"}
-            return response
+        response['success']=success
+        response['message']=message
+        response['data']=data
+        return response
 
-        # checking whether any field is empty or not
-        elif username == "" or password == '' or email == '':
-            response={"message": "Username or email is empty"}
-            return response
-        else:
-            print ("Inside the else bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy")
-            try:
+    def register_user(self,request):
+
+        try:
+            username = request.data['username']
+            email = request.data['email']
+            password = request.data['password']
+
+
+
+            message={
+                "success":"",
+                "message":"",
+                "data":""
+            }
+
+            # checking whether the user name or email exists or not
+            if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
+
+                response = self.smd_response(False, 'Username or email alredy exists', '')
+                return response
+
+            # checking whether any field is empty or not
+            elif username == "" or password == '' or email == '':
+
+                response = self.smd_response(False, 'Username or email is empty', '')
+                return response
+            else:
+
+
 
                 # Inserting a new row into the database
                 user = User.objects.create_user(username=username, email=email, password=password)
-                print (user,"In the create userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr")
-            except ObjectDoesNotExist as e:
-                print(e)
 
-            user.save()
-            user.is_active = False
-            user.save()
-            # storing username and email as payload in dictionary format
-            payload = {
-                'username': user.username,
-                'email': user.email
-            }
-            # creating the token
-            token = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
-            print (token,"In the token creation parttttttttttttttttttt")
-            currentsite = get_current_site(request)
+                user.is_active = False
+                user.save()
+                # storing username and email as payload in dictionary format
+                payload = {
+                    'username': user.username,
+                    'email': user.email
+                }
+                # creating the token
+                token = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
+                print (token,"In the token creation parttttttttttttttttttt")
+                currentsite = get_current_site(request)
 
-            try:
+
                 # getting the shortened token using get_surl method
                 shortedtoken = get_surl(token)
-            except Exception:
+
                 print ("Exception occured in url shortening")
-            # converting shortened token to string format
-            print (shortedtoken,"shooorteddd tokennnnnnnnnnnnnnnn")
-            stringshortedtoken = str(shortedtoken)
+                # converting shortened token to string format
 
-            # splitting string
-            splittedshortedtokenstr = stringshortedtoken.split('/')
-            print (splittedshortedtokenstr[2],"splittedshotedtokennnnnnnnnnnnnnnn")
-            mail_subject = 'Link to activate the account'
-            mail_message = render_to_string('activate.html', {
-                'user': user.username,
-                'domain': get_current_site(request).domain,
-                'token': splittedshortedtokenstr[2],
-            })
+                stringshortedtoken = str(shortedtoken)
 
-            recipient_email = os.getenv('EMAILID')
+                # splitting string
+                splittedshortedtokenstr = stringshortedtoken.split('/')
 
-            # sending the mail
-            email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
-            try:
+                mail_subject = 'Link to activate the account'
+                mail_message = render_to_string('activate.html', {
+                    'user': user.username,
+                    'domain': get_current_site(request).domain,
+                    'token': splittedshortedtokenstr[2],
+                })
+
+                recipient_email = os.getenv('EMAILID')
+
+                # sending the mail
+                email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
 
                 email.send()
-
-            except SMTPException as e:
-                print(e)
-                response={"message":"email id not valid"}
+                response = self.smd_response(True, 'Please check your mail for activating', '')
                 return response
-            print ("outside iffffffffffffffffffffffffffffffffffffffffblock")
+        except SMTPException:
+            response=self.smd_response(False,'Exception while sending mail','')
+        except user.DoesNotExist:
+            response = self.smd_response(False, 'Exception while getting the user using filter', '')
+        except DecodeError:
+            response = self.smd_response(False, 'Exception while generating the token', '')
 
-            response = {"message": "Please check your mail for activating"}
-            return response
+
+        return response
 
 
     def login_user(self,request):
-        # getting the username and password
-        username = request.data['username']
-        password = request.data['password']
-        print (username,"userrrrrrrrrrnameeeeeeeeeinloginuserr")
-        if username == "" or password == '':
-            response={"message":"Username or Password is empty"}
-            return response
-        # Used to store the data in SMD(success,message,data) format
-        smddata = {
-            'success': False,
-            'message': '',
-            'data': []
-        }
-        print ("Before authenticaaateeeeee")
+
         try:
-            user = auth.authenticate(username=username, password=password)
-            print (user)
-        except PermissionDenied as e:
-            print(e)
-        print (user,"userrrrrrrrrrrrrrrrrrrrrr")
 
-        if user is not None:
+            # getting the username and password
+            username = request.data['username']
+            password = request.data['password']
 
-            try:
-                auth.login(request, user)
-            except PermissionDenied as e:
-                print(e)
-            print ("After loginnnnnnnnnnnnnnnnnnnnnauth")
+            if username == "" or password == '':
+                print ("before user name empty responseeeeeeeeeeeeee")
+                response = self.smd_response(False, 'Username or Password is empty', '')
+                print (response,"after user name empty responseeeeeeeeeeeeee")
+                return response
 
-            print ("Inside payloaaaaaddddddddddddd")
-            payload = {
-                'username': json.dumps(username),
+            # Used to store the data in SMD(success,message,data) format
+            smddata = {
+                'success': False,
+                'message': '',
+                'data': []
             }
 
-            print ("After payloaaaaaadddddddddddddddddd")
-            # z=json.dumps(payload)
-            print ("before token generationnnnnnnnnnn")
-            token = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
-            print ("After token generationnnnnnnnnnn")
-            print(token,"Inside token rediiiiiisssssssssssssssss")
-            ro = RedisOperations()
-            ro.save(token)
-            print ("After Redis operationsssssssssssss")
-            # Token = jwt_token['token']
+            print ("before authenticating user...................")
+            user = auth.authenticate(username=username, password=password)
+            print(user, "After authenticating userrrrrrrrrrrrrrrrrrr")
 
-            # Sending the response in Success Message Data(SMD) format
-            smddata['success'] = True
-            smddata['message'] = "Login Successful"
-            smddata['data'] = [token]
-            response = {"message": "Login Success"}
-            return response
-        else:
-            response = {"message": "Login Failed"}
-            print ("Login failed at lastttttttttttttttttt")
-            return response
+
+
+
+            if user is not None:
+                print ("Before logging innnnnnnnnnnnnnnnn")
+                auth.login(request, user)
+
+
+                payload = {
+                    'username': json.dumps(username),
+                }
+
+
+                # z=json.dumps(payload)
+                print ("Before generating the tokennnnnnnnnnnnnnnn")
+                token = jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')
+
+                print (token,"After generating tokennnnnnnnnnnnn")
+                ro = RedisOperations()
+                ro.save(token)
+
+
+                response = self.smd_response(True, 'Login Success', token)
+                print (response,"After redis operations")
+                return response
+            else:
+
+                response = self.smd_response(False, 'Login Failed', '')
+                print (response,"Inside else bodyyyyyyyyyyyyyy")
+                return response
+        except DecodeError:
+            response = self.smd_response(False, 'Exception while generating token', '')
+            print (response,"Decode Errorrrrrrrrrrrrrrr")
+        except PermissionDenied:
+            response = self.smd_response(False, 'Exception while authenticating user', '')
+            print (response,"PermissionDeniedddddddd")
+        except ConnectionError:
+            response = self.smd_response(False, 'Exception in redis operation-ConnectionError', '')
+            print (response,"ConnectionErrorrrrrrrrrrr")
+        except AuthenticationError:
+            response = self.smd_response(False, 'Exception in redis operation-AuthenticationError', '')
+            print(response,"Authentication errorrrrrrrrrr")
+
+        return response
 
 
     def forgot_password(self,request):
 
-        # getting the emailid
-        emailid = request.data['email']
-        print (emailid,"emaillllllllllllllllllllllllllllllllllllidddd")
-        if emailid == '':
-            response = {"message": "email is empty"}
-            return response
+        try:
 
-        # checking whether the user exists in the database or not
-        if User.objects.filter(email=emailid).exists():
-            print ("emaillllll existsssssssssssssssssssssssss")
-            try:
-                # getting that user object
-                user = User.objects.get(email=emailid)
-            except ObjectDoesNotExist as e:
-                print (e)
-            print ("After gettting the userrrrrrrrrr")
+            # getting the emailid
+            emailid = request.data['email']
 
-            # storing the username and email as payload
-            payload = {
-                'username': user.username,
-                'email': user.email
-            }
-            print ("Afterrrrr payloadddddddddddd")
-            # generating the jwt token
-            try:
+            if emailid == '':
+
+                response = self.smd_response(False, 'email is empty', '')
+                return response
+
+            user = User.objects.get(email=emailid)
+            # checking whether the user exists in the database or not
+            if user is not None:
+
+
+                # storing the username and email as payload
+                payload = {
+                    'username': user.username,
+                    'email': user.email
+                }
+
+                # generating the jwt token
                 jwt_token = {"token": jwt.encode(payload, "secret", algorithm="HS256").decode('utf-8')}
-            except Exception:
-                print("EXception occured while generating the token")
-            print("Afterrrrr token generationnnnnnn")
-            token = jwt_token["token"]
 
-            currentsite = get_current_site(request)
-            subject = "Link to Reset the password"
-            print ("Before rendering templateeeeeeeeeeeeeeeeee")
-            message = render_to_string('forgotpassword.html', {
-                'domain': "http://127.0.0.1:8000",
-                'token': token
-            })
-            print ("Before sendmaillllllllllllllllll")
-            # sending the mail
-            try:
-                send_mail(subject, message, 'noothanprem@gmail.com', ['noothan627@gmail.com'])
-            except SMTPException as e:
-                print(e)
-            print("Afterrrrr send maillllllllllllllllll")
-            response = {"message": "Check your mail for the link"}
-            return response
-            # return render(request, "accounts/resetmail.html")
+                token = jwt_token["token"]
 
-        else:
-            print ("mailid is invaliddddddddddddddddddddddddd")
-            response = {"message": "Invalid Email id.. Try Once again"}
-            return response
+                currentsite = get_current_site(request)
+                subject = "Link to Reset the password"
+
+                message = render_to_string('forgotpassword.html', {
+                    'domain': "http://127.0.0.1:8000",
+                    'token': token
+                })
+                sender=os.getenv('EMAIL_HOST_USER')
+                reciever=os.getenv('EMAILID')
+
+                # sending the mail
+
+                send_mail(subject, message, sender, [reciever])
+
+
+                response = self.smd_response(True, 'Check your mail for the link', '')
+                return response
+
+
+            else:
+
+
+                response = self.smd_response(False, 'Invalid Email id.. Try Once again', '')
+                return response
+        except SMTPException:
+            response = self.smd_response(False, 'Exception occured while sending email', '')
+        except DecodeError:
+            response = self.smd_response(False, 'Exception occured while generating token', '')
+        except user.DoesNotExist:
+            response = self.smd_response(False, 'Exception occured while getting the user object', '')
 
 
     def reset_password(self,request,token):
 
-        # decoding the token and storing it into user_details
-        user_details = jwt.decode(token, "secret")
-        # getting the username from token
-        user_name = user_details['username']
         try:
+
+            # decoding the token and storing it into user_details
+            user_details = jwt.decode(token, "secret")
+            # getting the username from token
+            user_name = user_details['username']
             # getting the user object
             u = User.objects.get(username=user_name)
-        except ObjectDoesNotExist as e:
-            print(e)
 
-        if u is not None:
-            # Taking the new password two times
-            password = request.data['password']
-        else:
-            return "Invalid User"
 
-        # checking whether the user wxists in the database or not
-        if User.objects.filter(username=user_name).exists():
-            # getting that user object
-            try:
-                user = User.objects.get(username=user_name)
-            except ObjectDoesNotExist as e:
-                print (e)
-            # setting the password to new password
-            try:
+            if u is not None:
+                # Taking the new password two times
+                password = request.data['password']
+            else:
+                response = self.smd_response(False, 'Invalid User', '')
+                return response
+
+            # checking whether the user wxists in the database or not
+            user = User.objects.get(username=user_name)
+            if user is not None:
+                # getting that user object
+                # setting the password to new password
+
                 user.set_password(password)
-            except Exception:
-                print ("Exception occured while setting the password")
 
-            try:
+
                 # saving the user
                 user.save()
-            except PermissionDenied as e:
-                print (e)
-            response = {"message": "Passsword Changed Successfully"}
-            return response
+                response = self.smd_response(True, 'Passsword Changed Successfully', '')
 
-        else:
+                return response
 
-            # If two passwords are not same, display passords doesn't match
-            response = {"message": "Both the Passwords doesn't match"}
-            return response
+            else:
+
+                # If two passwords are not same, display passords doesn't match
+                response = self.smd_response(False, 'Both the Passwords doesnt match', '')
+
+                return response
+        except user.DoesNotExist:
+            response = self.smd_response(False, 'Exception occured while accessing the user object', '')
+        except DecodeError:
+            response = self.smd_response(False, 'Exception occured while generating the token', '')
+        return response
 
     def logout(self,request):
 
         try:
             # getting the request header
             header = request.META['HTTP_AUTHORIZATION']
-            print (header, "hwhrhrhrhrhrhrhrhhrhrhhrhrhh")
+        
             headerlist = header.split(" ")
             token = headerlist[1]
-        except Exception:
-            print ("Exception occured while getting the request header")
-            response = {"message": "Logout Failed"}
-            return response
+        
 
 
-        # creating the object for RedisOperations class
-        try:
+            # creating the object for RedisOperations class
+
             redis_object = RedisOperations()
-        except Exception:
-            print ("Exception occured while creating object")
-            response = {"message": "Logout Failed"}
-            return response
-        try:
+
             r = redis_object.r
             # deleting the token from redis
             r.delete(token)
-        except Exception:
-            response = {"message": "Logout Failed"}
+
+            response = self.smd_response(True, 'Logout Successful', '')
             return response
-        response = {"message": "Logout Successful"}
+        except ConnectionError:
+            response = self.smd_response(False, 'Exception occured while accessing redis-ConnectionError', '')
+        except AuthenticationError:
+            response = self.smd_response(False, 'Exception occured while accessing redis-AuthenticationError', '')
         return response
 
 
@@ -306,33 +334,31 @@ class UserOperations:
         try:
             # getting the token after shortening the URL
             expandedtoken = ShortURL.objects.get(surl=token)
-        except Exception:
-            print ("Exception occured while expanding the URL")
-            response = {"message": "User activation failed"}
-            return response
-        print(expandedtoken.lurl)
-        # decoding the token and getting the datas
-        user_details = jwt.decode(expandedtoken.lurl, 'secret', algorithms='HS256')
-        # getting the user name
-        user_name = user_details['username']
 
-        try:
+            print(expandedtoken.lurl)
+            # decoding the token and getting the datas
+            user_details = jwt.decode(expandedtoken.lurl, 'secret', algorithms='HS256')
+            # getting the user name
+            user_name = user_details['username']
+
             # getting the user object
             user1 = User.objects.get(username=user_name)
 
-        except ObjectDoesNotExist as e:
-            print(e)
-            response = {"message": "User activation failed"}
-            return response
 
-        if user1 is not None:
-            # Making is_active flag true
-            user1.is_active = True
-            # saving the user
-            user1.save()
-            response = {"message": "Registration Successful"}
-            return response
+            if user1 is not None:
+                # Making is_active flag true
+                user1.is_active = True
+                # saving the user
+                user1.save()
+                response = self.smd_response(True, 'Registration Successful', '')
+                return response
 
-        else:
-            response = {"message": "Registration Failed"}
-            return response
+            else:
+                response = self.smd_response(False, 'Registration Failed', '')
+
+                return response
+        except User.DoesNotExist:
+            response = self.smd_response(False, 'Exception occurred while getting the user object', '')
+        except DecodeError:
+            response = self.smd_response(False, 'Exception occurred while decoding the token', '')
+        return response

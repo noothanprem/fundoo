@@ -30,6 +30,7 @@ from django.core.exceptions import PermissionDenied,ObjectDoesNotExist
 from accounts.service import user
 
 
+
 userclassobject=user.UserOperations()
 
 #API for registering the user

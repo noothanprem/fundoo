@@ -20,6 +20,10 @@ import boto3
 from .serializer import UploadImageSerializer, NoteShareSerializer
 from .Lib.amazon_s3_file import upload_file
 
+
+#creating the object for NoteShare class
+
+
 # API for uploading image
 class UploadImage(GenericAPIView):
     serializer_class = UploadImageSerializer
@@ -49,11 +53,11 @@ class NoteShare(GenericAPIView):
     serializer_class = NoteShareSerializer
 
     def post(self, request):
-        #getting the title and note from notesupload.html
+        # getting the title and note from notesupload.html
         title = request.data['title']
         note = request.data['note']
 
-        #prompts the user if any of the field is empty
-        if(title == "" or note == ""):
-            return HttpResponse("Please Fill the fields")
+        # prompts the user if any of the field is empty
+        if (title == "" or note == ""):
+            return HttpResponse("Please fill the fields")
         return render(request, 'notesupload.html', {'title': title, 'note': note})
