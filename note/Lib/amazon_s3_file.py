@@ -1,12 +1,25 @@
 import boto3
-#class UploadFile:
 
-def upload_file(image):
-    try:
-        print("insideeeeeeeeeeeeeeeeeeeeeeeeeeee")
-        s3 = boto3.resource('s3')
-        s3.meta.client.upload_fileobj(image, "hat123", "pqr")
-        return "success"
-    except Exception:
-        print ("Exception occured while uploading image to s3 bucket")
-        return "failed"
+class UploadImage:
+
+    def smd_response(self,success,message,data):
+        response={
+            "success":"",
+            "message":"",
+            "data":""
+        }
+        response['success']=success
+        response['message']=message
+        response['data']=data
+        return response
+
+    def upload_file(self,image):
+        try:
+
+            s3 = boto3.resource('s3')
+            s3.meta.client.upload_fileobj(image, "hat123", "jkl")
+            response = self.smd_response(True, 'Image upload successful', '')
+            return response
+        except Exception:
+            response = self.smd_response(False, 'Image upload Failed', '')
+            return response

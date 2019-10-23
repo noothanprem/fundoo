@@ -264,10 +264,10 @@ class UserOperations:
             # getting the username from token
             user_name = user_details['username']
             # getting the user object
-            u = User.objects.get(username=user_name)
+            userobject = User.objects.get(username=user_name)
 
 
-            if u is not None:
+            if userobject is not None:
                 # Taking the new password two times
                 password = request.data['password']
             else:

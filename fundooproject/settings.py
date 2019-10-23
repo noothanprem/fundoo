@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_short_url',
     'storages',
     'social_django',
+    'colorful',
     'django_social_share',
     'note',
 
