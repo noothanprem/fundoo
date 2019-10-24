@@ -6,5 +6,6 @@ from . import views
 urlpatterns=[
     path('uploadimage',views.UploadImage.as_view(), name='upload_view'),
     path('noteshare',views.NoteShare.as_view(), name='noteshare_view'),
-    path('createnote',views.CreateNote.as_view(), name='createnote_view')
+    path('note',views.Note.as_view(), name='note_view'),
+    path('label',views.LabelView.as_view(), name='label_view')
 ]

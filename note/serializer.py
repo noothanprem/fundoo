@@ -1,6 +1,5 @@
 from rest_framework import serializers
-from .models import Img
-from .models import Note
+from .models import Img,Note,Label
 class UploadImageSerializer(serializers.ModelSerializer):
     class Meta:
         model=Img
@@ -11,7 +10,12 @@ class NoteShareSerializer(serializers.ModelSerializer):
         model=Note
         fields=['title','note']
 
-class CreateNoteSerializer(serializers.ModelSerializer):
+class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model=Note
-        fields=['user','title','note','label','image','collab','is_archieve','pin','url']
+        fields='__all__'
+
+class LabelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Label
+        fields='__all__'

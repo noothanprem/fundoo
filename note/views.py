@@ -17,10 +17,14 @@ import json
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 import boto3
-from .serializer import UploadImageSerializer, NoteShareSerializer,CreateNoteSerializer
+from .serializer import UploadImageSerializer, NoteShareSerializer,NoteSerializer,LabelSerializer
 from .Lib.amazon_s3_file import UploadImage
-from .models import Note
+from .models import Note,Label
+from .service.label import LabelOperations
+from django.core.exceptions import ObjectDoesNotExist
+
 uploadclassobject=UploadImage()
+labelobject=LabelOperations()
 
 # API for uploading image
 class UploadImage(GenericAPIView):
@@ -59,15 +63,24 @@ class NoteShare(GenericAPIView):
             return HttpResponse(json.dumps(response))
         return render(request, 'notesupload.html', {'title': title, 'note': note})
 
-class CreateNote(GenericAPIView):
-    serializer_class = CreateNoteSerializer
 
+class LabelView(GenericAPIView):
+    serializer_class =LabelSerializer
+
+    def post(self, request):
+
+        # import pdb
+        # pdb.set_trace()
+        response=labelobject.create_label(request)
+        return HttpResponse(json.dumps(response))
+
+class Note(GenericAPIView):
+    serializer_class = NoteSerializer
+
+
+
+    #method for creating the data
     def post(self,request):
-
-        creat=CreateNoteSerializer(data=request.data)
-        if creat.is_valid():
-            creat.save()
-            print("cdcdc")
 
 
         try:
@@ -82,9 +95,9 @@ class CreateNote(GenericAPIView):
             is_archieve=request.data["is_archieve"]
             print(is_archieve)
             pin=request.data["pin"]
-            url=request.data.get["url"]
+            url=request.data["url"]
             try:
-                image=request.data.get['image']
+                image=request.data['image']
             except Exception:
                 return HttpResponse("Image file exception")
 

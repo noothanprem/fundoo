@@ -7,8 +7,9 @@ class Img(models.Model):
     imgs= models.URLField(max_length=250)
 
 class Label(models.Model):
-    name=models.CharField(max_length=100)
-    user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='labeluser')
+    name = models.CharField(max_length=100,blank=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE,related_name='labeluser')
+
 
 class Note(models.Model):
     user=models.ForeignKey(User,on_delete=models.CASCADE,related_name='noteuser')
