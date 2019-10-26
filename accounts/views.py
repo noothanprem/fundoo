@@ -26,7 +26,7 @@ from .decorators import token_required
 import redis
 from .Lib.redisfunc import RedisOperations
 from django.core.exceptions import PermissionDenied,ObjectDoesNotExist
-
+from django.http import HttpResponseRedirect
 from accounts.service import user
 
 
@@ -60,6 +60,9 @@ class Login(GenericAPIView):
         user_login=userclassobject.login_user(request)
         print (user_login,"returned to viewssssssssss")
         return HttpResponse(json.dumps(user_login))
+        #print (request.POST,"Poooooossssstttttttttttt")
+        #request.session['old_post'] = request.POST
+        #return HttpResponseRedirect('note/')
 
 
 
@@ -127,5 +130,11 @@ def sociallogin(request):
 def home(request):
     return render(request, 'home.html')
 
+@staticmethod
+def get_user(id_):
+    try:
+        return User.objects.get(pk=id_)  # <-- tried to get by email here
+    except User.DoesNotExist:
+        return None
 
         
