@@ -9,5 +9,8 @@ urlpatterns=[
     path('notecreate',views.CreateNote.as_view(), name='createnote_view'),
     path('labelcreate',views.CreateLabel.as_view(), name='createlabel_view'),
     path('updatelabel/<label_id>',views.UpdateLabel.as_view(), name='updatelabel_view'),
-    path('noteupdate/<note_id>',views.UpdateNote.as_view(), name='updatenote_view')
+    path('noteupdate/<note_id>',views.UpdateNote.as_view(), name='updatenote_view'),
+    path('gettrash',views.Trash.as_view(),name='trash_view'),
+    path('getarchieve',views.Archieve.as_view(),name='archieve_view'),
+    path('getreminder',views.Reminder.as_view(),name='reminder_view')
 ]

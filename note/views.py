@@ -26,6 +26,10 @@ from .models import Note, Label
 from .service.label import LabelOperations
 from .Lib.redisfunction import RedisOperation
 from django.core.exceptions import ObjectDoesNotExist
+from django.utils import timezone
+from django.utils.decorators import method_decorator
+from .decorators import login_decorator
+
 redisobject=RedisOperation()
 redis=redisobject.r
 
@@ -102,7 +106,7 @@ class UpdateLabel(GenericAPIView):
 
 
 
-
+@method_decorator(login_decorator, name='dispatch')
 class CreateNote(GenericAPIView):
 
     serializer_class = NoteSerializer
@@ -149,10 +153,12 @@ class CreateNote(GenericAPIView):
             collab_list.append(collaborator_id)
         data['collab']=collab_list
 
-
+        print (data,"creeeaaateeenooteee daaaataaaaaaaa")
         serializer=NoteSerializer(data=data,partial=True)
         print (serializer.initial_data)
+        print ("Before valiiiddddddd")
         if serializer.is_valid():
+
 
             create_note=serializer.save(user=user)
             print (create_note.id,"create note iddddddddd")
@@ -182,9 +188,134 @@ class UpdateNote(GenericAPIView):
             response['data']=note_content
             return HttpResponse(json.dumps(response))
 
+    def put(self,request,note_id):
+        response = {"success": False,
+                    "message": "",
+                    "data": ""}
+
+        note_object=Note.objects.get(id=note_id)
+        request_data=request.data
+        user=request.user
+        user_id=request.user.id
+        label_list=[]
+        collaborator_list=[]
+        print (request_data,"request daaataaaaaaaaaaaaaaaa")
+        print (user_id,"request_useeeeerrrrrrrrrrrr")
+        labels=request_data['label']
+        print(labels,"laaaaabeeeeeelsslistttttttt")
+        for label in labels:
+            label_object=Label.objects.filter(user=user_id, name=label)
+            print (label_object,"laaabeeellll objeeeccccttttttt")
+            # getting the value of 'id' from the object
+            print(label_object.values(),"llaaabeeel object valueeessssss")
+            label_id=label_object.values()[0]['id']
+            label_list.append(label_id)
+        request_data['label']=label_list
+
+
+        collaborators=request_data['collab']
+        for collaborator in collaborators:
+            print (collaborator,"collllaaaaborattooorrr")
+            collaborator_object=User.objects.get(email=collaborator)
+            print (collaborator_object,"collaaaaaboratorrr objeccccttttt")
+            collaborator_id=collaborator_object.id
+            print (collaborator_id,"Collaborator_idddddddddddddddddddddddddddddddddddddddd")
+            collaborator_list.append(collaborator_id)
+        request_data['collab']=collaborator_list
+        print (request_data,"requeesssttt daaaataaaaaaaaaaa")
+        serializer=NoteSerializer(note_object,data=request_data,partial=True)
+        print (serializer,"serializzzzzeeerrrrrrrr")
+        if serializer.is_valid():
+
+            update_note=serializer.save()
+            print (update_note,"note updaaaateeeeeedddddd")
+            response['success'] = True
+            response['message'] = "Update Operation Successful"
+            response['data'] = request_data
+            return HttpResponse(json.dumps(response))
+
+
+    def delete(self,request,note_id):
+
+        response = {"success": False,
+                    "message": "",
+                    "data": ""}
+
+        try:
+            note=Note.objects.get(id=note_id)
+            note.is_delete=True
+            note.save()
+
+            response['success'] = True
+            response['message'] = "Delete Operation Successful"
+            response['data'] = note_id
+        except Exception:
+            response['success'] =False
+            response['message'] = "Delete Operation Failed"
+            response['data'] = note_id
+
+        return HttpResponse(json.dumps(response))
+
+
+
+class Trash(GenericAPIView):
+
+    serializer_class = NoteSerializer
+    def get(self,request):
+
+        response = {"success": False,
+                    "message": "",
+                    "data": ""}
+        user_id=request.user.id
+        print (user_id,"ussserrrrr iddddd")
+        note=Note.objects.filter(user_id=user_id,is_delete=True)
+        print (note)
+
+        return HttpResponse(note.values())
+
+
+class Archieve(GenericAPIView):
+    serializer_class = NoteSerializer
+
+    def get(self,request):
+        response = {"success": False,
+                    "message": "",
+                    "data": ""}
+
+        user_id=request.user.id
+        note=Note.objects.filter(user_id=user_id,is_archieve=True)
+        return HttpResponse(note.values())
 
 
 
 
+class Reminder(GenericAPIView):
+
+    serializer_class = NoteSerializer
+    def get(self,request):
+
+        response = {"success": False,
+                    "message": "",
+                    "previous_list": "",
+                    "pending_list":""
+                    }
+
+        user=request.user
+        pending_list=[]
+        previous_list=[]
+        reminder_list = Note.objects.all().values()
+        print (reminder_list,"remindrrrrlissstttttttt")
+        print (reminder_list.values()[0]['reminder'],"remindeeerrr valuessss")
+        for i in range(len(reminder_list)):
+             if(timezone.now() >= reminder_list.values()[i]['reminder']):
+                 previous_list.append(reminder_list.values()[i]['title'])
+             else:
+                 pending_list.append(reminder_list.values()[i]['title'])
 
 
+        response['success']=True
+        response['message']="Reminder Get Operation successful"
+        response['previous_list']=previous_list
+        response['pending_list']=pending_list
+
+        return HttpResponse(json.dumps(response))

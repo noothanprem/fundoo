@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from note.models import Label
+import json
 
 
 class LabelOperations:
@@ -85,9 +86,11 @@ class LabelOperations:
 
             print (body_unicode,"unicooooodddeeeeee")
             print(type(body_unicode),"type uniiiccooodeee")
-
+            body_unicode_dict=json.loads(body_unicode)
+            print (type(body_unicode_dict),"dictionary typeeeeeeeee")
+            print (body_unicode_dict['name'],"body unicode naaameeeeee")
             label_object=Label.objects.get(id=label_id)
-            label_object.name=body_unicode
+            label_object.name=body_unicode_dict['name']
             label_object.save()
             response['success'] = True
             response['message'] = "Label Updated Successfully"
