@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/2.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/2.2/ref/settings/
 """
-
+import logging
 import os
 from datetime import timedelta
 
@@ -57,7 +57,12 @@ INSTALLED_APPS = [
 
 ]
 
+
+formatter = logging.Formatter('%(levelname)s \t:%(asctime)s \t:%(name)s \t:%(message)s')
+file_handler = logging.FileHandler('fundoo.log')
+file_handler.setFormatter(formatter)
 DJANGO_SHORT_URL_REDIRECT_URL = ''
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [

@@ -1,0 +1,20 @@
+INFO 	:2019-10-30 11:12:53,419 	:note.service.note 	:note created successfully
+INFO 	:2019-10-30 11:12:53,459 	:note.service.note 	:note creation failed
+INFO 	:2019-10-30 11:14:57,068 	:note.service.note 	:note created successfully
+INFO 	:2019-10-30 11:21:19,271 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-30 11:35:57,088 	:note.service.note 	:Update Operation Successful
+INFO 	:2019-10-30 11:43:09,155 	:note.service.note 	:Update Operation Successful
+INFO 	:2019-10-30 12:00:29,156 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-30 12:01:36,036 	:note.service.note 	:Update Operation Successful
+INFO 	:2019-10-30 12:27:30,182 	:note.service.label 	:Label Updated Successfully
+INFO 	:2019-10-30 12:38:58,387 	:note.service.label 	:Exception occured while getting the Label object
+INFO 	:2019-10-30 12:57:05,179 	:note.service.note 	:note created successfully
+INFO 	:2019-10-30 13:22:40,143 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-30 13:32:36,355 	:note.service.note 	:Exception occured while accessing Label
+INFO 	:2019-10-30 13:53:58,059 	:note.service.note 	:Update Operation Successful
+ERROR 	:2019-10-30 13:55:36,209 	:note.service.note 	:Exception occured while accessing User
+INFO 	:2019-10-30 13:55:47,445 	:note.service.note 	:Update Operation Successful
+ERROR 	:2019-10-30 13:56:30,555 	:note.service.note 	:Exception occured while accessing User
+ERROR 	:2019-10-30 13:56:56,629 	:note.service.note 	:Exception occured while accessing Label
+INFO 	:2019-10-30 13:59:39,041 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-30 14:09:34,894 	:note.service.note 	:Delete Operation Successful

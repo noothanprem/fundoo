@@ -33,6 +33,7 @@ from accounts.service import user
 
 userclassobject=user.UserOperations()
 
+
 #API for registering the user
 class Register(GenericAPIView):
     #setting the serializer class
