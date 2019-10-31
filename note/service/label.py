@@ -60,6 +60,7 @@ class LabelOperations:
                     "message": "",
                     "data": ""}
         try:
+            print ("Inside labelllllllllll")
             #getting the user
             user = request.user
 
@@ -111,10 +112,16 @@ class LabelOperations:
             response['data'] = ""
 
         except Label.DoesNotExist:
-            logger.info("Exception occured while getting the Label object")
+            logger.error("Exception occured while getting the Label object")
             response['success'] = False
             response['message'] = "Exception occured while getting the Label object"
             response['data'] = ""
+        except Exception:
+            logger.error("Exception occured")
+            response['success'] = False
+            response['message'] = "Exception occured while getting the Label object"
+            response['data'] = ""
+
 
         return response
 

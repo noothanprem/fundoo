@@ -167,7 +167,7 @@ CACHES = {
 }
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=5),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=2),
     'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
@@ -253,3 +253,5 @@ SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 ACCOUNT_EMAIL_REQUIRED = True
 
 Token=os.getenv('Token')
+BASE_URL=os.getenv('BASE_URL')
+TEST_TOKEN=os.getenv('TEST_TOKEN')

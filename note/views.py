@@ -112,8 +112,12 @@ class UpdateLabel(GenericAPIView):
 
     def put(self,request,label_id):
         #calls the update_label function
+        print ("Inside putttttttt")
         response = labelobject.update_label(request,label_id)
-        return HttpResponse(json.dumps(response))
+        if response == "":
+            return HttpResponse(json.dumps(response),status=404)
+        else:
+            return HttpResponse(json.dumps(response))
 
     def delete(self,request,label_id):
         #calls the delete_label function
@@ -122,6 +126,7 @@ class UpdateLabel(GenericAPIView):
 
 
 #API for creating note
+
 @method_decorator(login_decorator, name='dispatch')
 class CreateNote(GenericAPIView):
 
@@ -129,10 +134,14 @@ class CreateNote(GenericAPIView):
 
 
     def post(self, request):
-
+        print ("Inside Create note post method")
         #calls the create_note() method
         response=noteobject.create_note(request)
-        return HttpResponse(json.dumps(response))
+        print (response,"After response from create note post")
+        if response['success'] == False:
+            return HttpResponse(json.dumps(response),status=400)
+        else:
+            return HttpResponse(json.dumps(response))
 
 #API for reading,updating and deleting notes
 @method_decorator(login_decorator, name='dispatch')
@@ -144,7 +153,10 @@ class UpdateNote(GenericAPIView):
         response=noteobject.get_note(request,note_id)
 
         #'default=str' converts everything it doesn't know to strings.
-        return HttpResponse(json.dumps(response,default=str))
+        if (response['data'] == ""):
+            return HttpResponse(json.dumps(response), status=400)
+        else:
+            return HttpResponse(json.dumps(response))
 
     def put(self,request,note_id):
         #calls the update_note() method
@@ -156,6 +168,9 @@ class UpdateNote(GenericAPIView):
     def delete(self,request,note_id):
         #calls the delete_note method
         response = noteobject.delete_note(request, note_id)
-        return HttpResponse(json.dumps(response))
+        if(response['data'] == ""):
+            return HttpResponse(json.dumps(response),status=400)
+        else:
+            return HttpResponse(json.dumps(response))
 
 

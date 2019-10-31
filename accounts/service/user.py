@@ -1,4 +1,6 @@
 from __future__ import unicode_literals
+
+from django.core.validators import validate_email
 from accounts.serializers import UserSerializer, LoginSerializer, ForgotPasswordSerializer, ResetPasswordSerializer, \
     LogoutSerializer
 from rest_framework.generics import GenericAPIView
@@ -29,6 +31,9 @@ import os
 from .jwt import GenerateToken
 from jwt.exceptions import DecodeError
 from redis.exceptions import ConnectionError, AuthenticationError
+from accounts.Lib.eventemitter import ee
+
+
 token_generation_object = GenerateToken()
 
 class UserOperations:
@@ -56,6 +61,10 @@ class UserOperations:
                 "message": "",
                 "data": ""
             }
+            try:
+                validate_email(email)
+            except Exception:
+                self.smd_response(False,"Invalid Email","")
 
             # checking whether the user name or email exists or not
             if ((User.objects.filter(username=username).exists()) or (User.objects.filter(email=email).exists())):
@@ -106,6 +115,7 @@ class UserOperations:
                 recipient_email = os.getenv('EMAILID')
 
                 # sending the mail
+                ee.emit('send_mail',recipient_email,mail_message)
                 email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
 
                 email.send()

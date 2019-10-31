@@ -18,3 +18,421 @@ ERROR 	:2019-10-30 13:56:30,555 	:note.service.note 	:Exception occured while ac
 ERROR 	:2019-10-30 13:56:56,629 	:note.service.note 	:Exception occured while accessing Label
 INFO 	:2019-10-30 13:59:39,041 	:note.service.note 	:Delete Operation Successful
 INFO 	:2019-10-30 14:09:34,894 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 03:27:11,227 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-31 03:51:08,999 	:note.service.note 	:Update Operation Successful
+ERROR 	:2019-10-31 08:30:33,623 	:note.service.note 	:note creation failed
+INFO 	:2019-10-31 08:36:36,847 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 08:43:20,040 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 08:45:23,798 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 08:47:57,898 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:28:39,040 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:31:14,402 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:32:30,737 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:32:30,737 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:32:30,910 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:34:54,926 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:34:54,926 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:34:55,131 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:41:20,553 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:41:20,553 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:41:20,667 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:42:30,179 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:42:30,179 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:42:30,434 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:42:50,787 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:42:50,787 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:42:50,899 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:43:31,607 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:43:31,607 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:43:31,728 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:43:31,761 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:43:31,761 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:43:31,870 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:47:36,709 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:47:36,709 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:47:36,810 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:47:36,845 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:47:36,845 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:47:36,923 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:54:03,907 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:54:03,907 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:54:04,086 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:54:04,217 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:54:04,217 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:54:04,301 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:55:47,151 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:55:47,151 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:55:47,208 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:55:47,231 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:55:47,231 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:55:47,363 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:57:39,628 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:57:39,629 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:57:39,676 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 09:57:39,708 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 09:57:39,708 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 09:57:39,761 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:13:37,336 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:13:37,336 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:13:37,383 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:13:37,410 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:13:37,411 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:13:37,454 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:15:28,990 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:15:28,991 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:15:29,135 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:15:29,169 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:15:29,169 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:15:29,216 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:16:50,391 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:16:50,391 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:16:50,461 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:16:50,494 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:16:50,494 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:16:50,574 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:17:16,232 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:17:16,232 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:17:16,354 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:17:16,381 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:17:16,381 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:17:16,497 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:25:53,792 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:25:53,792 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:25:53,994 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:25:54,026 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:25:54,026 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:25:54,126 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:26:56,968 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:26:56,968 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:26:57,087 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:26:57,117 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:26:57,117 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:26:57,170 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:26:57,204 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 10:27:19,039 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:27:19,039 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:27:19,096 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:27:19,128 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:27:19,128 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:27:19,186 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:30:03,356 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:30:03,357 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:30:03,548 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:30:03,591 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:30:03,591 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:30:03,661 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:32:16,359 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:32:16,359 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:32:16,585 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:32:16,619 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:32:16,619 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:32:16,717 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:32:16,750 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 10:34:31,986 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:34:31,986 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:34:32,147 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:34:32,183 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:34:32,183 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:34:32,257 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:34:52,656 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:34:52,656 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:34:52,792 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:34:52,815 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:34:52,815 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:34:53,120 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:35:20,248 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:35:20,248 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:35:20,306 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:35:20,333 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:35:20,333 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:35:20,388 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:35:32,245 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:35:32,245 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:35:32,374 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:35:32,400 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:35:32,400 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:35:32,528 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:35:32,621 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 10:40:55,983 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:40:55,983 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:40:56,101 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:40:56,136 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:40:56,136 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:40:56,255 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:40:56,348 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-31 10:40:56,776 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 10:41:52,946 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:41:52,946 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:41:53,057 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:41:53,078 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:41:53,079 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:41:53,386 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:41:53,477 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 10:42:59,880 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:42:59,881 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:42:59,928 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:42:59,959 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:42:59,959 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:43:00,010 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:43:00,095 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-31 10:43:00,231 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 10:45:12,541 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:45:12,541 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:45:12,665 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:45:12,701 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:45:12,701 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:45:12,799 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:45:12,888 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-31 10:45:13,094 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 10:48:22,414 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:48:22,414 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:48:22,610 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 10:48:22,646 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 10:48:22,646 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 10:48:22,731 	:note.service.note 	:note created successfully
+INFO 	:2019-10-31 10:48:22,821 	:note.service.note 	:Data accessed from redis
+INFO 	:2019-10-31 10:48:23,022 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 10:53:34,004 	:note.service.note 	:Exception occured while accessing Note
+ERROR 	:2019-10-31 10:55:19,090 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:55:19,203 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:56:04,676 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:56:04,688 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:56:57,899 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:56:57,919 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 10:56:57,932 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 10:56:58,043 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:13:47,310 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:13:47,323 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:13:47,337 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:13:47,449 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:13:47,548 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:16:12,267 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:16:12,267 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:16:12,434 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:16:12,462 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:16:12,462 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:16:12,809 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:16:12,834 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:16:12,847 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:16:12,860 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:16:12,874 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:16:12,983 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:16:13,105 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:23:33,449 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:24:31,982 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:28:30,875 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:29:47,781 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:29:47,849 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:30:16,469 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:30:16,481 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:30:16,579 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:33:37,232 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:33:37,232 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:33:37,430 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:33:37,465 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:33:37,465 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:33:37,550 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:33:37,585 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:33:37,599 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:33:37,614 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:33:37,628 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:33:37,643 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:33:37,701 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:41:34,431 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:41:34,432 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:41:34,548 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:41:34,581 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:41:34,582 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:41:34,690 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:41:34,715 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:41:34,728 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:41:34,742 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:41:34,756 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:41:34,774 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:41:34,883 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:41:34,894 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:41:35,002 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:41:35,134 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:42:03,622 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:42:03,623 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:42:03,756 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:42:03,789 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:42:03,789 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:42:03,904 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:42:03,941 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:42:03,956 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:42:03,969 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:42:03,981 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:42:03,993 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:42:04,092 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:42:04,110 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:42:04,123 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:42:04,246 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:50:00,409 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:50:00,409 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:50:00,460 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:50:00,494 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:50:00,494 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:50:00,542 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:50:00,574 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:50:00,587 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:50:00,601 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:50:00,616 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:50:00,631 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:50:00,690 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:50:00,704 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:50:00,715 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:50:00,771 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:56:12,462 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:56:12,462 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:56:12,578 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:56:12,610 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:56:12,611 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:56:12,712 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:56:12,738 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:56:12,749 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:56:12,760 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:56:12,772 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:56:12,782 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:56:13,049 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:56:13,067 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:56:13,083 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:56:13,192 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:57:00,860 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:57:00,860 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:57:00,922 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:57:00,951 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 11:57:00,951 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 11:57:01,036 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 11:57:01,069 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 11:57:01,083 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 11:57:01,098 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 11:57:01,114 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:57:01,127 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:57:01,218 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 11:57:01,235 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 11:57:01,249 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 11:57:01,341 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 11:57:01,361 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 11:57:01,472 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:02:11,137 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:02:11,137 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:02:11,249 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:02:11,282 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:02:11,283 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:02:11,393 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:02:11,426 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:02:11,442 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:02:11,453 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:02:11,467 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:02:11,480 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:02:11,586 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:02:11,604 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:02:11,616 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:02:11,730 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:02:11,742 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:02:11,755 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:04:41,620 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:04:41,621 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:04:41,837 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:04:41,871 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:04:41,871 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:04:41,979 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:04:42,015 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:04:42,029 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:04:42,042 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:04:42,057 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:04:42,070 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:04:42,152 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:04:42,168 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:04:42,182 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:04:42,265 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:04:42,279 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:04:42,298 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:07:28,869 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:07:28,869 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:07:29,018 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:07:29,055 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:07:29,055 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:07:29,099 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:07:29,133 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:07:29,146 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:07:29,159 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:07:29,173 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:07:29,188 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:07:29,247 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:07:29,260 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:07:29,272 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:07:29,329 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:07:29,344 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:07:29,357 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:08:54,926 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:08:54,926 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:08:55,032 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:08:55,063 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:08:55,063 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:08:55,154 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:08:55,185 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:08:55,198 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:08:55,213 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:08:55,228 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:08:55,242 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:08:55,348 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:08:55,365 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:08:55,380 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:08:55,492 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:08:55,512 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:08:55,527 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:10:03,219 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:10:03,220 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:10:03,442 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:10:03,478 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:10:03,478 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:10:03,757 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:10:03,780 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:10:03,790 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:10:03,801 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:10:03,813 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:10:03,825 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:10:03,929 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:10:03,940 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:10:03,951 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:10:04,062 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:10:04,074 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:10:04,086 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:13:40,729 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:13:40,729 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:13:40,868 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:13:40,903 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:13:40,903 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:13:40,982 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:13:41,014 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:13:41,027 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:13:41,040 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:13:41,054 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:13:41,068 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:13:41,183 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:13:41,194 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:13:41,205 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:13:41,327 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:13:41,347 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:13:41,360 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:13:41,373 	:note.service.label 	:Exception occured
+ERROR 	:2019-10-31 12:24:35,535 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:24:35,535 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:24:35,733 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:24:35,764 	:note.service.note 	:Key Error
+ERROR 	:2019-10-31 12:24:35,764 	:note.service.note 	:Key Error
+INFO 	:2019-10-31 12:24:35,866 	:note.service.note 	:note created successfully
+ERROR 	:2019-10-31 12:24:35,897 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+ERROR 	:2019-10-31 12:24:35,909 	:note.service.note 	:'NoneType' object has no attribute 'decode'
+INFO 	:2019-10-31 12:24:35,923 	:note.service.note 	:Data accessed from redis
+ERROR 	:2019-10-31 12:24:35,937 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:24:35,951 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:24:36,048 	:note.service.note 	:Delete Operation Successful
+ERROR 	:2019-10-31 12:24:36,065 	:note.service.note 	:Delete Operation Failed
+ERROR 	:2019-10-31 12:24:36,081 	:note.service.note 	:Delete Operation Failed
+INFO 	:2019-10-31 12:24:36,161 	:note.service.note 	:Delete Operation Successful
+INFO 	:2019-10-31 12:24:36,182 	:note.service.label 	:Read Operation Successfull
+INFO 	:2019-10-31 12:24:36,199 	:note.service.label 	:Read Operation Successfull
+ERROR 	:2019-10-31 12:24:36,212 	:note.service.label 	:Exception occured
