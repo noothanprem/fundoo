@@ -14,6 +14,12 @@ class UploadImage:
         return response
 
     def upload_file(self,image):
+        """
+
+        :param image: image to upload
+        :return: uploads the image and returns the object returned
+
+        """
         try:
 
             s3 = boto3.resource('s3')

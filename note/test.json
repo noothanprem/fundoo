@@ -64,7 +64,14 @@
     "labelput2": {
                     "name": "ashik",
                     "user": 15
-                 }
+                 },
+    "urls": {
+              "createnote": "/note/notecreate",
+              "updatenote": "/note/noteupdate/",
+              "createlabel": "/note/labelcreate",
+              "updatelabel": "/note/updatelabel/"
+            }
+
   }
 
 ]

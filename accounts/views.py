@@ -61,9 +61,7 @@ class Login(GenericAPIView):
         user_login=userclassobject.login_user(request)
         print (user_login,"returned to viewssssssssss")
         return HttpResponse(json.dumps(user_login))
-        #print (request.POST,"Poooooossssstttttttttttt")
-        #request.session['old_post'] = request.POST
-        #return HttpResponseRedirect('note/')
+
 
 
 
@@ -76,7 +74,7 @@ class ForgotPassword(GenericAPIView):
     def post(self,request):
 
         password_forgot = userclassobject.forgot_password(request)
-        print (password_forgot,"returned to viewssssssss")
+
         return HttpResponse(json.dumps(password_forgot))
 
 #API for Reset password

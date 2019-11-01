@@ -48,16 +48,27 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 
-# API for uploading image
+"""
+API for uploading image
+"""
 class UploadImage(GenericAPIView):
     serializer_class = UploadImageSerializer
 
     def post(self, request):
+
+        """
+
+        :param request: gives the image for upload
+        :return: uplads the images into s3 bucket
+
+        """
         try:
             image = request.FILES.get('imgs')
             print(image, "imaaaaaageeeeeeeeeeeeee")
 
-            # calls the upload_file() method inside Lib file
+            """
+            calls the upload_file() method inside Lib file
+            """
             response = uploadclassobject.upload_file(image)
             # returns the responses
 
@@ -69,15 +80,27 @@ class UploadImage(GenericAPIView):
 
 # API for sharing of notes
 class NoteShare(GenericAPIView):
-    # setting the serializer class
+    """
+    setting the serializer class
+    """
     serializer_class = NoteShareSerializer
 
     def post(self, request):
-        # getting the title and note from notesupload.html
+        """
+
+        :param request: to share the note to social media
+        :return: shares to social media
+        """
+        """
+        
+        getting the title and note from notesupload.html
+        """
         title = request.data['title']
         note = request.data['note']
 
-        # prompts the user if any of the field is empty
+        """
+        prompts the user if any of the field is empty
+        """
         if title == "" or note == "":
             response = self.smd_response(False, 'Please fill the fields', '')
             return HttpResponse(json.dumps(response))
@@ -89,29 +112,62 @@ class NoteShare(GenericAPIView):
 class CreateLabel(GenericAPIView):
     serializer_class = LabelSerializer
 
-    #gets the required label
+    """
+    gets the required label
+    """
     def get(self, request):
+        """
+
+        :param request: requests for label
+        :return: returns the label data
+
+        """
         print (request.user)
-        #calling the get_label() method
+        """
+        calling the get_label() method
+        """
         response = labelobject.get_label(request)
 
         return HttpResponse(json.dumps(response))
 
-    #creates label
+    """
+    creates label
+    """
     def post(self, request):
+        """
+
+        :param request: requests to create a label
+        :return: creates a label and returns the new label data
+
+        """
         # import pdb
         # pdb.set_trace()
-        #calls the create_label function
+        """
+        calls the create_label function
+        """
         response = labelobject.create_label(request)
         return HttpResponse(json.dumps(response))
 
-#API which performs update and delete label
+"""
+API which performs update and delete label
+"""
 @method_decorator(login_decorator, name='dispatch')
 class UpdateLabel(GenericAPIView):
     serializer_class = LabelSerializer
 
     def put(self,request,label_id):
-        #calls the update_label function
+        """
+
+        :param request: requests to update a particular label
+        :param label_id: id of the label to update
+        :return: updates the label and returns the new label data
+
+        """
+
+        """
+        calls the update_label function
+        """
+
         print ("Inside putttttttt")
         response = labelobject.update_label(request,label_id)
         if response == "":
@@ -120,12 +176,25 @@ class UpdateLabel(GenericAPIView):
             return HttpResponse(json.dumps(response))
 
     def delete(self,request,label_id):
-        #calls the delete_label function
+
+        """
+
+        :param request: requests to delete a particular label
+        :param label_id: id of the label to delete
+        :return: deletes the label
+
+        """
+
+        """
+        calls the delete_label function
+        """
         response = labelobject.delete_label(request, label_id)
         return HttpResponse(json.dumps(response))
 
 
-#API for creating note
+"""
+API for creating note
+"""
 
 @method_decorator(login_decorator, name='dispatch')
 class CreateNote(GenericAPIView):
@@ -134,8 +203,17 @@ class CreateNote(GenericAPIView):
 
 
     def post(self, request):
-        print ("Inside Create note post method")
-        #calls the create_note() method
+        """
+
+        :param request: requests to create a note with the given data
+        :return: returns the new note data
+
+        """
+
+
+        """
+        calls the create_note() method
+        """
         response=noteobject.create_note(request)
         print (response,"After response from create note post")
         if response['success'] == False:
@@ -143,30 +221,68 @@ class CreateNote(GenericAPIView):
         else:
             return HttpResponse(json.dumps(response))
 
-#API for reading,updating and deleting notes
+"""
+API for reading,updating and deleting notes
+"""
 @method_decorator(login_decorator, name='dispatch')
 class UpdateNote(GenericAPIView):
+
     serializer_class = NoteSerializer
 
     def get(self,request,note_id):
-        #calls the get_note() method
+
+        """
+
+        :param request: requests for a particular note data
+        :param note_id: id of the note
+        :return: returns the requested note datas
+
+        """
+
+        """
+        calls the get_note() method
+        """
         response=noteobject.get_note(request,note_id)
 
-        #'default=str' converts everything it doesn't know to strings.
+        """
+        'default=str' converts everything it doesn't know to strings.
+        """
         if (response['data'] == ""):
             return HttpResponse(json.dumps(response), status=400)
         else:
             return HttpResponse(json.dumps(response))
 
     def put(self,request,note_id):
-        #calls the update_note() method
+
+        """
+
+        :param request: requests to update a particular note
+        :param note_id: id of the note to update
+        :return: updates the note and returns the updated data
+
+        """
+
+        """
+        calls the update_note() method
+        """
         response = noteobject.update_note(request, note_id)
         return HttpResponse(json.dumps(response))
 
 
 
     def delete(self,request,note_id):
-        #calls the delete_note method
+
+        """
+
+        :param request: requests to delete a particular note
+        :param note_id: id of the note to delete
+        :return: deletes the note
+
+        """
+
+        """
+        calls the delete_note method
+        """
         response = noteobject.delete_note(request, note_id)
         if(response['data'] == ""):
             return HttpResponse(json.dumps(response),status=400)
