@@ -1,7 +1,8 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count
 from django.http import HttpResponse
-from note.models import Note,Label
+from note.models import Note, Label
 from note.Lib.redisfunction import RedisOperation
 from note.serializer import NoteSerializer
 from fundooproject.settings import file_handler
@@ -12,15 +13,20 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
 
-redisobject=RedisOperation()
-redis=redisobject.r
+redisobject = RedisOperation()
+redis = redisobject.r
+
 
 class NoteOperations:
 
+    response = {"success": False,
+                "message": "",
+                "data": []}
     """
     Function for creating note
     """
-    def create_note(self,request):
+
+    def create_note(self, request):
         """
 
         :param request: passes the note datas
@@ -28,9 +34,6 @@ class NoteOperations:
 
         """
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
 
         try:
             # pdb.set_trace()
@@ -38,14 +41,14 @@ class NoteOperations:
             getting the data from request
             """
             data = request.data
-            print (data,"request daaaataaaaaaaaa")
+            print (data, "request daaaataaaaaaaaa")
 
             """
             getting the user
             """
             user = request.user
             user_id = user.id
-            print (user,"userrrrrrrrrrr")
+            print (user, "userrrrrrrrrrr")
 
             """
             creating the lists for collaborators and labels
@@ -53,7 +56,7 @@ class NoteOperations:
             collab_list = []
             label_list = []
             labels = data['label']
-            print (labels,"labelllllllllssssssssss")
+            print (labels, "labelllllllllssssssssss")
 
             """
             iterates through all the labels in the list
@@ -63,25 +66,22 @@ class NoteOperations:
                 getting each label and adding the label_id to the list
                 """
                 labelobject = Label.objects.filter(user_id=user_id, name=label)
-                print (labelobject,"labelobjecttttttt")
+                print (labelobject, "labelobjecttttttt")
                 if not labelobject:
                     raise Label.DoesNotExist
                 label_id = labelobject.values()[0]['id']
-                print (label_id,"labell idddddddd")
+                print (label_id, "labell idddddddd")
                 label_list.append(label_id)
             """
             replaces the 'label' in data with the new label_list
             """
             data['label'] = label_list
         except Label.DoesNotExist:
-            response['success']=False
-            response['message']="Exception occured while accessing the label"
-            response['data']=""
-            return response
+            self.response['message']="Exception occured while accessing the label"
+            return self.response
         except KeyError:
             logger.error("Key Error")
             pass
-
 
         """
         getting the given collaborators
@@ -98,7 +98,7 @@ class NoteOperations:
                 getting the collaborators with the given email
                 """
                 collaborator_object = User.objects.filter(email=collaborator)
-                print (collaborator_object,"collaboratorobjectt")
+                print (collaborator_object, "collaboratorobjectt")
                 if not collaborator_object:
                     raise User.DoesNotExist
                 """
@@ -121,39 +121,38 @@ class NoteOperations:
             pass
 
         except User.DoesNotExist:
-            response['success']=False
-            response['message']="Exception occured while accessing the User"
-            response['data']=""
-            return response
 
+            self.response['message'] = "Exception occured while accessing the User"
+
+            return self.response
 
         """
         gives 'partial=True' because we are not using all the fileds in the model
         """
 
         serializer = NoteSerializer(data=data, partial=True)
-        print (serializer,"After serializerrrrr")
+        print (serializer, "After serializerrrrr")
         if serializer.is_valid():
             """
             saving
             """
+            print ("Inside srializeeeerrrrr")
             create_note = serializer.save(user=user)
-
 
             """
             saving to redis with the key as note_id
             """
-            redis.set(create_note.id, str(json.dumps(serializer.data)))
+            #redis.set(create_note.id, str(json.dumps(serializer.data)))
+            redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
             logger.info("note created successfully")
-            response['success'] = True
-            response['message'] = "Note created successfully"
-            response['data'] = ""
-            return response
+            self.response['success']=True
+            self.response['message']="note created successfully"
+            self.response['data'].append(data)
+            return self.response
         logger.error("note creation failed")
-        response['success'] = False
-        response['message'] = "Note creation failed"
-        response['data'] = ""
-        return response
+
+        self.response['message'] = "Note creation failed"
+        return self.response
 
     """
     Function to get the note
@@ -161,50 +160,51 @@ class NoteOperations:
     """
     takes note_id as parameter
     """
-    def get_note(self,request,note_id):
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
+    def get_note(self, request, note_id):
+
+
         try:
+
+            user = request.user
+
+            print (user, "useeeeerrrrrrrrr")
             """
             getting note from redis with the given id
             """
-            redis_data = redis.get(str(note_id)).decode('utf-8')
+            #redis_data = redis.get(str(note_id)).decode('utf-8')
+            redis_data=redis.hget("Notes",str(note_id)).decode('utf-8')
             """
             getting the data from the database if redis reading fails
             """
             if redis_data is None:
+
                 note = Note.objects.filter(id=note_id)
                 note_contents = note.values()
-                print(note_contents,"note contentsssssss")
+                print(note_contents, "note contentsssssss")
                 note_content = note_contents[0]
                 logger.info("Data accessed from database")
                 return note_content
         except Note.DoesNotExist:
             logger.error("Exception occured while accessing Note")
-            response['success'] = False
-            response['message'] = "Exception occured while accessing Note"
-            response['data'] = ""
-            return response
+
+            self.response['message'] = "Exception occured while accessing Note"
+            return self.response
         except KeyError:
             logger.error("Key error occured")
-            response['success'] = False
-            response['message'] = "Key error occured"
-            response['data'] = ""
-            return response
+
+            self.response['message'] = "Key error occured"
+            return self.response
         except Exception as e:
             logger.error(str(e))
-            response['success'] = False
-            response['message'] = str(e)
-            response['data'] = ""
-            return response
+            self.response['message'] = str(e)
+            return self.response
 
         logger.info("Data accessed from redis")
-        response['success'] = True
-        response['message'] = "Read Operation Successful"
-        response['data'] = redis_data
-        return response
+        self.response['success'] = True
+        self.response['message'] = "Read Operation Successful"
+        self.response['data'].append(redis_data)
+        return self.response
 
     """
     Function to update the note
@@ -212,32 +212,36 @@ class NoteOperations:
     """
     gets note_id as parameter
     """
-    def update_note(self,request,note_id):
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
+    def update_note(self, request, note_id):
+
+
         try:
             try:
+                print (request, "request")
+
                 """
                 getting the note with the given id
                 """
                 note_object = Note.objects.get(id=note_id)
+                print(note_object,"noteObjecttttt")
                 """
                 getting the data from request
                 """
                 request_data = request.data
+                print (request_data, "request daaataaaa")
                 """
                 getting the user
                 """
                 user = request.user
+
+                print (user, "useeeeerrrrrrrrr")
                 user_id = request.user.id
             except Note.DoesNotExist:
                 logger.error("Exception occured while accessing Note")
-                response['success'] = False
-                response['message'] = "Exception occured while accessing Note"
-                response['data'] = ""
-                return response
+
+                self.response['message'] = "Exception occured while accessing Note"
+                return self.response
 
             label_list = []
             collaborator_list = []
@@ -246,6 +250,8 @@ class NoteOperations:
                 getting the labels from the request data
                 """
                 labels = request_data['label']
+                print (labels, "labellssss listtt")
+                print(user_id)
                 """
                 Iterates through the labels
                 """
@@ -253,14 +259,16 @@ class NoteOperations:
                     """
                     getting the label with the given id and name
                     """
+                    print (label, "labeeellllll")
                     label_object = Label.objects.filter(user=user_id, name=label)
-
+                    print (label_object, "Lable objeccttttt")
                     if not label_object:
                         raise Label.DoesNotExist
                     """
                     getting the value of 'id'
                     """
                     label_id = label_object.values()[0]['id']
+                    print (label_id, "label idddddd")
                     """
                     adding each labels id to a list
                     """
@@ -268,35 +276,39 @@ class NoteOperations:
                 """
                 replacing the label data with id's list
                 """
+                print (label_list, "label listtttttttt")
                 request_data['label'] = label_list
+                print (request_data['label'], "request data label")
             except Label.DoesNotExist:
                 logger.error("Exception occured while accessing Label")
-                response['success'] = False
-                response['message'] = "Exception occured while accessing Label"
-                response['data'] = ""
-                return response
+
+                self.response['message'] = "Exception occured while accessing Label"
+
+                return self.response
             except KeyError:
                 logger.error("Key error occured")
-                response['success'] = False
-                response['message'] = "Key error occured"
-                response['data'] = ""
-                return response
 
-            """
-            getting the given collaborators
-            """
-            collaborators = request_data['collab']
+                self.response['message'] = "Key error occured"
+                return self.response
+
             try:
+                """
+                getting the given collaborators
+                """
+                collaborators = request_data['collab']
+                print (collaborators, "collaborators")
+
                 """
                 Iterates through the collaborators
                 """
                 for collaborator in collaborators:
                     """
-                    getting the collaborator with the given email
-                    """
+                    # getting the collaborator with the given email
+                    # """
                     collaborator_object = User.objects.filter(email=collaborator)
                     if not collaborator_object:
-                        raise User.DoesNotExist
+                       raise User.DoesNotExist
+
                     """
                     getting the id of the collaborator
                     """
@@ -306,24 +318,27 @@ class NoteOperations:
                     adding all the ids to the list
                     """
                     collaborator_list.append(collaborator_id)
-                """
+
+                    #collaborator_object = User.objects.filter(email=collaborators)
+
+                    #print(collaborator_object, "collaboraator objeccctttttt")
+                """    
                 replacing with the id's list
                 """
                 request_data['collab'] = collaborator_list
-
-            except User.DoesNotExist:
-                logger.error("Exception occured while accessing User")
-                response['success'] = False
-                response['message'] = "Exception occured while accessing User"
-                response['data'] = ""
-                return response
+            except User.DoesNotExit:
+                self.response['message']="Exception occured while accessing the user"
+                return self.response
+            except KeyError:
+                self.response['message']="KeyError occured"
+                return self.response
 
             """
             makes 'partial' as 'True' because we are not using all the fileds of the Note
             """
             serializer = NoteSerializer(note_object, data=request_data, partial=True)
-            print (serializer.initial_data,"serializer initial daataaaa")
-            print (type(serializer.initial_data),"serializer initial data type")
+            print (serializer.initial_data, "serializer initial daataaaa")
+            print (type(serializer.initial_data), "serializer initial data type")
 
             if serializer.is_valid():
                 print ("valid serializeeeeeeeerrrrrrr")
@@ -332,55 +347,51 @@ class NoteOperations:
                 """
                 update_note = serializer.save()
 
-                redis.set(update_note.id, str(json.dumps(serializer.data)))
+                redis.hset("Notes",update_note.id, str(json.dumps(serializer.data)))
                 logger.info("Update Operation Successful")
-                response['success'] = True
-                response['message'] = "Update Operation Successful"
-                response['data'] = request_data
-                return response
+                print ("update operation successful")
+                self.response['success'] = True
+                self.response['message'] = "Update Operation Successful"
+                self.response['data'].append(request_data)
+                return self.response
         except Exception:
-            return HttpResponse(json.dumps(response),status=404)
+            self.response['message']="Update operation failed"
+            return HttpResponse(json.dumps(self.response), status=404)
 
     """
     Function to delete the note
     """
-    def delete_note(self,request,note_id):
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
-        user=request.user
+    def delete_note(self, request, note_id):
+
+
+        user = request.user
         try:
+            print (user,"requested userrrrrrrrr")
             """
             getting the note with the given id
             """
-            note = Note.objects.get(id=note_id,user_id=user.id)
-            print (note,"noooottttttttttteeeeeee")
+            note = Note.objects.get(id=note_id, user_id=user.id)
+
             """
             making 'is_delete' to access it from Trash
             """
             note.is_delete = True
             note.save()
 
-
             logger.info("Delete Operation Successful")
-            response['success'] = True
-            response['message'] = "Delete Operation Successful"
-            response['data'] = note_id
+            self.response['success'] = True
+            self.response['message'] = "Delete Operation Successful"
+            self.response['data'].append(note_id)
 
         except Note.DoesNotExist:
             logger.error("Delete Operation Failed")
-            response['success'] = False
-            response['message'] = "Delete Operation Failed"
-            response['data'] = note_id
+            self.response['message'] = "Delete Operation Failed"
+            return self.response
 
         except Exception as e:
             logger.error("Delete Operation Failed")
-            response['success'] = False
-            response['message'] = str(e)
-            response['data'] = ""
-        return response
 
-
-
-
+            self.response['message'] = "Delete operation failed"
+            return self.response
+        return self.response

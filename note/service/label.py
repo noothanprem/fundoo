@@ -13,6 +13,9 @@ logger.addHandler(file_handler)
 
 class LabelOperations:
 
+    response = {"success": False,
+                "message": "",
+                "data": []}
     """
     function to create label
     """
@@ -23,9 +26,7 @@ class LabelOperations:
         :return: creates label
         """
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
+
 
         try:
             """
@@ -49,26 +50,26 @@ class LabelOperations:
             checks whether the label with the same name and user exists or not
             """
             if Label.objects.filter(user_id=user_id,name=name).exists():
-                response['success'] = False
-                response['message'] = "Label already exists."
-                response['data'] = ""
-                return response
+
+                self.response['message'] = "Label already exists."
+
+                return self.response
 
             """
             creating label
             """
             labelobject=Label.objects.create(name=name, user=userobject)
-            response['success']=True
-            response['message']="Label created successfully"
-            response['data']=name
+            self.response['success']=True
+            self.response['message']="Label created successfully"
+            self.response['data'].append(name)
             logger.info("Label created successfully")
         except Label.DoesNotExist:
             logger.info("Exception occured while accessing the user")
-            response['success'] = False
-            response['message'] = "Exception occured while accessing the user"
-            response['data'] = ""
 
-        return response
+            self.response['message'] = "Exception occured while accessing the user"
+
+
+        return self.response
 
     """
     function to get the label
@@ -80,9 +81,7 @@ class LabelOperations:
         :return: returns all the labels of that particular user
         """
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
+
         try:
             print ("Inside labelllllllllll")
             """
@@ -103,14 +102,17 @@ class LabelOperations:
             for label in labels:
                 labels_list.append(label.name)
 
-            response=labels_list
+
             logger.info("Read Operation Successfull")
+            self.response['success']=True
+            self.response['message']="Read Operation Successfull"
+            self.response['data'].append(labels_list)
         except Label.DoesNotExist:
             logger.info("Exception occured while getting the Label")
-            response['success']=False
-            response['message']="Exception occured while getting the Label"
-            response['data']=""
-        return response
+
+            self.response['message']="Exception occured while getting the Label"
+
+        return self.response
 
     """
     Function to update label
@@ -124,9 +126,6 @@ class LabelOperations:
         :return: updates the label
         """
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
 
         try:
             """
@@ -153,23 +152,22 @@ class LabelOperations:
             label_object.save()
 
             logger.info("Label Updated Successfully")
-            response['success'] = True
-            response['message'] = "Label Updated Successfully"
-            response['data'] = ""
+            self.response['success'] = True
+            self.response['message'] = "Label Updated Successfully"
+
 
         except Label.DoesNotExist:
             logger.error("Exception occured while getting the Label object")
-            response['success'] = False
-            response['message'] = "Exception occured while getting the Label object"
-            response['data'] = ""
+
+            self.response['message'] = "Exception occured while getting the Label object"
+
         except Exception:
             logger.error("Exception occured")
-            response['success'] = False
-            response['message'] = "Exception occured while getting the Label object"
-            response['data'] = ""
+
+            self.response['message'] = "Exception occured while getting the Label object"
 
 
-        return response
+        return self.response
 
     """
     function for deleting label
@@ -183,9 +181,7 @@ class LabelOperations:
         :return: deletes the given label
         """
 
-        response = {"success": False,
-                    "message": "",
-                    "data": ""}
+
 
         try:
             #pdb.set_trace()
@@ -204,17 +200,17 @@ class LabelOperations:
             """
             label_object.delete()
             logger.info("Label Deleted Successfully")
-            response['success'] = True
-            response['message'] = "Label Deleted Successfully"
-            response['data'] = ""
+            self.response['success'] = True
+            self.response['message'] = "Label Deleted Successfully"
+
 
         except Label.DoesNotExist:
             logger.error("Exception occured while getting the Label object")
-            response['success'] = False
-            response['message'] = "Exception occured while getting the Label object"
-            response['data'] = ""
 
-        return response
+            self.response['message'] = "Exception occured while getting the Label object"
+
+
+        return self.response
 
 
 

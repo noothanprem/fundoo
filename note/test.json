@@ -44,7 +44,7 @@
                   "note_id": "hai"
                 },
     "notedelete2": {
-                  "note_id": " "
+                  "note_id": ""
                 },
     "notedelete3": {
                   "note_id":"35"
@@ -53,7 +53,7 @@
                   "note_id": "dvs"
                 },
     "noteput2": {
-                  "note_id": " "
+                  "note_id": ""
                 },
     "noteput3": {
                   "note_id":"35"
@@ -66,10 +66,10 @@
                     "user": 15
                  },
     "urls": {
-              "createnote": "/note/notecreate",
-              "updatenote": "/note/noteupdate/",
-              "createlabel": "/note/labelcreate",
-              "updatelabel": "/note/updatelabel/"
+              "createnote": "/note/api/notes",
+              "updatenote": "/note/api/notes",
+              "createlabel": "/note/api/labels",
+              "updatelabel": "/note/api/labels"
             }
 
   }

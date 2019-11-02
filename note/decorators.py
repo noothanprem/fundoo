@@ -34,9 +34,12 @@ def login_decorator(function):
             print (http_header,"htttp headerrrrr")
             token = http_header.split(" ")
             print (token,"tokennnnnn")
-            decoded_token = jwt.decode(token[1], settings.SECRET_KEY)
+            try:
+                decoded_token = jwt.decode(token[1], settings.SECRET_KEY)
+            except jwt.ExpiredSignatureError:
+                print ("Signature expireeeddddddddddd")
             print (decoded_token,"decoded tokennnnnnn")
             user = User.objects.get(id=decoded_token['user_id'])
-            redis.get(user.username)
+            #redis.get(user.username)
             return function(request, *args, **kwargs)
     return wrapper

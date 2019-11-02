@@ -214,6 +214,7 @@ class CreateNote(GenericAPIView):
         """
         calls the create_note() method
         """
+        print ("Inside note post method")
         response=noteobject.create_note(request)
         print (response,"After response from create note post")
         if response['success'] == False:
@@ -247,7 +248,7 @@ class UpdateNote(GenericAPIView):
         """
         'default=str' converts everything it doesn't know to strings.
         """
-        if (response['data'] == ""):
+        if (response['data'] == []):
             return HttpResponse(json.dumps(response), status=400)
         else:
             return HttpResponse(json.dumps(response))
@@ -265,8 +266,13 @@ class UpdateNote(GenericAPIView):
         """
         calls the update_note() method
         """
+        print (request,"requesttttttttttttt")
+
         response = noteobject.update_note(request, note_id)
-        return HttpResponse(json.dumps(response))
+        if(response['success'] == False):
+            return HttpResponse(json.dumps(response),status=400)
+        else:
+            return HttpResponse(json.dumps(response))
 
 
 
@@ -284,7 +290,8 @@ class UpdateNote(GenericAPIView):
         calls the delete_note method
         """
         response = noteobject.delete_note(request, note_id)
-        if(response['data'] == ""):
+        print(response,"responseee")
+        if(response['success'] == False):
             return HttpResponse(json.dumps(response),status=400)
         else:
             return HttpResponse(json.dumps(response))
