@@ -19,7 +19,7 @@ class Note(models.Model):
     collab=models.ManyToManyField(User,blank=True,related_name='collab')
     image=models.ImageField(blank=True)
     is_archieve=models.BooleanField(default=False)
-    is_delete=models.BooleanField(default=False)
+    is_trash=models.BooleanField(default=False)
     reminder = models.DateTimeField(auto_now_add=True,blank=True)
     pin=models.BooleanField(default=False)
     url=models.URLField(blank=True)

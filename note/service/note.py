@@ -48,7 +48,7 @@ class NoteOperations:
             """
             user = request.user
             user_id = user.id
-            print (user, "userrrrrrrrrrr")
+
 
             """
             creating the lists for collaborators and labels
@@ -138,12 +138,13 @@ class NoteOperations:
             """
             print ("Inside srializeeeerrrrr")
             create_note = serializer.save(user=user)
-
+            print (create_note.id,"create note idddddddd")
             """
             saving to redis with the key as note_id
             """
             #redis.set(create_note.id, str(json.dumps(serializer.data)))
-            redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
+            sets=redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
+            print (sets,"redis hsettttttttttt")
             logger.info("note created successfully")
             self.response['success']=True
             self.response['message']="note created successfully"
@@ -167,13 +168,14 @@ class NoteOperations:
         try:
 
             user = request.user
-
+            print (note_id,"note iddddddd")
             print (user, "useeeeerrrrrrrrr")
             """
             getting note from redis with the given id
             """
             #redis_data = redis.get(str(note_id)).decode('utf-8')
-            redis_data=redis.hget("Notes",str(note_id)).decode('utf-8')
+            redis_data=redis.hget("Notes",str(note_id))
+            print (redis_data,"redis daaataaaaaaa")
             """
             getting the data from the database if redis reading fails
             """
@@ -184,7 +186,7 @@ class NoteOperations:
                 print(note_contents, "note contentsssssss")
                 note_content = note_contents[0]
                 logger.info("Data accessed from database")
-                return note_content
+
         except Note.DoesNotExist:
             logger.error("Exception occured while accessing Note")
 
@@ -376,7 +378,7 @@ class NoteOperations:
             """
             making 'is_delete' to access it from Trash
             """
-            note.is_delete = True
+            note.is_trash = True
             note.save()
 
             logger.info("Delete Operation Successful")
