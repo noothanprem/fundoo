@@ -100,7 +100,7 @@ class NoteOperations:
             getting the collaborators with the given email
             """
             collaborator_object = User.objects.filter(email__in=collaborators)
-            print (collaborator_object, "collaboratorobjectt")
+
             if not collaborator_object:
                 raise User.DoesNotExist
             """
@@ -148,7 +148,7 @@ class NoteOperations:
             """
             #redis.set(create_note.id, str(json.dumps(serializer.data)))
             sets=redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
-            print (sets,"redis hsettttttttttt")
+
             logger.info("note created successfully")
             self.response['success']=True
             self.response['message']="note created successfully"
@@ -173,13 +173,12 @@ class NoteOperations:
 
             user = request.user
             print (note_id,"note iddddddd")
-            print (user, "useeeeerrrrrrrrr")
             """
             getting note from redis with the given id
             """
             #redis_data = redis.get(str(note_id)).decode('utf-8')
             redis_data=redis.hget("Notes",str(note_id))
-            print (redis_data,"redis daaataaaaaaa")
+
             """
             getting the data from the database if redis reading fails
             """

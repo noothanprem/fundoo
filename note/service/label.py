@@ -6,6 +6,11 @@ from note.models import Label
 import json
 import logging
 from fundooproject.settings import file_handler
+from note.Lib.redisfunction import RedisOperation
+
+redisobject = RedisOperation()
+redis = redisobject.r
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -49,16 +54,20 @@ class LabelOperations:
             """
             checks whether the label with the same name and user exists or not
             """
+
             if Label.objects.filter(user_id=user_id,name=name).exists():
 
                 self.response['message'] = "Label already exists."
 
                 return self.response
+            labelobject = Label.objects.create(name=name, user=userobject)
 
+            redis.hmset(user.id + "label", {labelobject.id: name})
+            logger.info("note is created")
             """
             creating label
             """
-            labelobject=Label.objects.create(name=name, user=userobject)
+
             self.response['success']=True
             self.response['message']="Label created successfully"
             self.response['data'].append(name)
@@ -93,20 +102,18 @@ class LabelOperations:
             """
             getting the labels of the user
             """
-            labels = Label.objects.filter(user_id=user.id)
+            user = request.user
+            redis_data = redis.hmget(user.id + "label")
+            if redis_data is None:
+                labels = Label.objects.filter(user_id=user.id)
+                label_name = [i.name for i in labels]
+                logger.info("labels where fetched from database for user :%s", request.user)
 
-            labels_list = []
-            """
-            looping through the labels and getting the name of each label
-            """
-            for label in labels:
-                labels_list.append(label.name)
+            logger.info("labels where fetched from redis")
 
-
-            logger.info("Read Operation Successfull")
             self.response['success']=True
             self.response['message']="Read Operation Successfull"
-            self.response['data'].append(labels_list)
+            self.response['data'].append(label_name)
         except Label.DoesNotExist:
             logger.info("Exception occured while getting the Label")
 
@@ -114,10 +121,9 @@ class LabelOperations:
 
         return self.response
 
-    """
-    Function to update label
-    takes the label_id as a parameter
-    """
+
+
+
     def update_label(self,request,label_id):
         """
 
@@ -150,6 +156,7 @@ class LabelOperations:
             label_object.name=body_unicode_dict['name']
 
             label_object.save()
+            redis.hmset(user.id + "label", {label_object.id: label_id})
 
             logger.info("Label Updated Successfully")
             self.response['success'] = True
@@ -199,6 +206,7 @@ class LabelOperations:
             deleting the label
             """
             label_object.delete()
+            redis.hdel(user.id + "label", label_id)
             logger.info("Label Deleted Successfully")
             self.response['success'] = True
             self.response['message'] = "Label Deleted Successfully"

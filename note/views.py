@@ -322,6 +322,7 @@ class CreateNote(GenericAPIView):
         response=noteobject.create_note(request)
         print (response,"After response from create note post")
         if response['success'] == False:
+
             return HttpResponse(json.dumps(response),status=400)
         else:
             return HttpResponse(json.dumps(response))
