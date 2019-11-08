@@ -109,12 +109,17 @@ class NoteShare(GenericAPIView):
 @method_decorator(login_decorator, name='dispatch')
 class Trash(GenericAPIView):
 
-    #serializer_class = NoteSerializer
+
     response = {"success": False,
                 "message": "",
                 "data": []}
 
     def get(self,request):
+        """
+
+        :param request: requests for the notes in the trash
+        :return: returns the notes in the trash
+        """
 
         try:
             user=request.user
@@ -123,7 +128,7 @@ class Trash(GenericAPIView):
             notevalues_str=str(noteobject.values())
         except Note.DoesNotExist:
             self.response['message']="Exception occured while accessing note"
-            return HttpResponse(json.dumps(self.response))
+            return HttpResponse(json.dumps(self.response),status=400)
         self.response['success']=True
         self.response['message']="Trash Get operation successful"
         self.response['data'].append(notevalues_str)
@@ -134,6 +139,11 @@ class Archieve(GenericAPIView):
 
 
     def get(self,request):
+        """
+
+        :param request: requests for the archieved note
+        :return: returns the archieved notes
+        """
 
         try:
             user=request.user
@@ -141,8 +151,6 @@ class Archieve(GenericAPIView):
             user_id=user.id
             print (user_id)
             noteobject=Note.objects.filter(user_id=user_id, is_archieve=True)
-            print (noteobject,"Archieve note objectt")
-            print (type(noteobject),"type note objectttttttt")
             string_note=str(noteobject.values())
         except Note.DoesNotExist:
             self.response['message']="Exception occured while accessing note"
@@ -157,18 +165,29 @@ class Reminder(GenericAPIView):
                 "data": []}
 
     def get(self,request):
+        """
+
+        :param request: to get the reminders
+        :return: returns the reminders lists
+        """
 
         try:
             user=request.user
-            print (user,"userrrrrrr")
+
             user_id=user.id
-            print (user_id,"user iddddd")
+
+            """
+            gets the note
+            """
             noteobjects=Note.objects.filter(user_id=user_id)
-            str_noteobjects=str(noteobjects)
+
             remaining_list=[]
             completed_list=[]
             for noteobject in noteobjects:
 
+                """
+                gives the value of the specified attribute of the object
+                """
                 if getattr(noteobject,'reminder') > timezone.now():
                     remaining_list.append(noteobject.reminder)
                 else:
@@ -178,8 +197,7 @@ class Reminder(GenericAPIView):
                 "completed":completed_list
             }
             reminder_string=str(reminders)
-            print (remaining_list,"remaining listtttttttttttttttttttttttttt")
-            print (completed_list,"completed listtttttttttttttttttttt")
+
             self.response['success']=True
             self.response['message']="Reminder operation successful"
             self.response['data'].append(reminder_string)
@@ -300,7 +318,7 @@ class CreateNote(GenericAPIView):
         """
         calls the create_note() method
         """
-        print ("Inside note post method")
+
         response=noteobject.create_note(request)
         print (response,"After response from create note post")
         if response['success'] == False:
@@ -356,6 +374,7 @@ class UpdateNote(GenericAPIView):
         print (request,"requesttttttttttttt")
 
         response = noteobject.update_note(request, note_id)
+        print (response,"responseeeeeee")
         if(response['success'] == False):
             return HttpResponse(json.dumps(response),status=400)
         else:
@@ -376,14 +395,14 @@ class UpdateNote(GenericAPIView):
         """
         calls the delete_note method
         """
-        print ("Inside deleteeeeeeeee")
+
         response = noteobject.delete_note(request, note_id)
-        print(response,"responseeeeeeeee")
+
         if(response['success'] == False):
-            print ("Falseeeeeeeeeee")
+
             return HttpResponse(json.dumps(response),status=400)
         else:
-            print ("elseeeeeeeee")
+
             return HttpResponse(json.dumps(response))
 
 

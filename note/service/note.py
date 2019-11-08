@@ -9,6 +9,8 @@ from fundooproject.settings import file_handler
 import json
 import logging
 
+
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(file_handler)
@@ -93,22 +95,24 @@ class NoteOperations:
             """
             Iterates through all the collaborators
             """
-            for collaborator in collaborators:
-                """
-                getting the collaborators with the given email
-                """
-                collaborator_object = User.objects.filter(email=collaborator)
-                print (collaborator_object, "collaboratorobjectt")
-                if not collaborator_object:
-                    raise User.DoesNotExist
-                """
-                getting the id of the collaborator
-                """
-                collaborator_id = collaborator_object.values()[0]['id']
-                print (collaborator_id, "collaboratoridddddd")
-                """
-                adding all the ids to the list
-                """
+            #for collaborator in collaborators:
+            """
+            getting the collaborators with the given email
+            """
+            collaborator_object = User.objects.filter(email__in=collaborators)
+            print (collaborator_object, "collaboratorobjectt")
+            if not collaborator_object:
+                raise User.DoesNotExist
+            """
+            getting the id of the collaborator
+            """
+            collaborator_id_list=[]
+            for collab in collaborator_object:
+                collaborator_id_list.append(collab.id)
+            """
+            adding all the ids to the list
+            """
+            for collaborator_id in collaborator_id_list:
                 collab_list.append(collaborator_id)
 
             """
@@ -155,14 +159,14 @@ class NoteOperations:
         self.response['message'] = "Note creation failed"
         return self.response
 
-    """
-    Function to get the note
-    """
-    """
-    takes note_id as parameter
-    """
 
     def get_note(self, request, note_id):
+        """
+
+        :param request: to get the note
+        :param note_id: id of the note
+        :return: returns the note
+        """
 
 
         try:
@@ -208,23 +212,26 @@ class NoteOperations:
         self.response['data'].append(redis_data)
         return self.response
 
-    """
-    Function to update the note
-    """
-    """
-    gets note_id as parameter
-    """
+
 
     def update_note(self, request, note_id):
+        """
+
+        :param request: to update a note
+        :param note_id: id of the note
+        :return: updates the note with the new data
+
+        """
 
 
         try:
             try:
-                print (request, "request")
+                print (request, "requestss")
 
                 """
                 getting the note with the given id
                 """
+                print (note_id,"note iddddddddddd")
                 note_object = Note.objects.get(id=note_id)
                 print(note_object,"noteObjecttttt")
                 """
@@ -239,6 +246,7 @@ class NoteOperations:
 
                 print (user, "useeeeerrrrrrrrr")
                 user_id = request.user.id
+                print (user_id,"user idddddd")
             except Note.DoesNotExist:
                 logger.error("Exception occured while accessing Note")
 
@@ -253,6 +261,7 @@ class NoteOperations:
                 """
                 labels = request_data['label']
                 print (labels, "labellssss listtt")
+                print (type(labels),"type  label")
                 print(user_id)
                 """
                 Iterates through the labels
@@ -307,21 +316,25 @@ class NoteOperations:
                     """
                     # getting the collaborator with the given email
                     # """
-                    collaborator_object = User.objects.filter(email=collaborator)
+                    collab_list=[]
+                    collaborator_object = User.objects.filter(email__in=collaborators)
+                    print(collaborator_object, "collaboratorobjectt")
                     if not collaborator_object:
-                       raise User.DoesNotExist
-
+                        raise User.DoesNotExist
                     """
                     getting the id of the collaborator
                     """
-                    collaborator_id = collaborator_object.values()[0]['id']
-
+                    collaborator_id_list = []
+                    for collab in collaborator_object:
+                        collaborator_id_list.append(collab.id)
+                    print(collaborator_id_list, "collaboratoridddddd")
                     """
                     adding all the ids to the list
                     """
-                    collaborator_list.append(collaborator_id)
+                    for collaborator_id in collaborator_id_list:
+                        collab_list.append(collaborator_id)
 
-                    #collaborator_object = User.objects.filter(email=collaborators)
+                #collaborator_object = User.objects.filter(email=collaborators)
 
                     #print(collaborator_object, "collaboraator objeccctttttt")
                 """    
@@ -358,13 +371,21 @@ class NoteOperations:
                 return self.response
         except Exception:
             self.response['message']="Update operation failed"
-            return HttpResponse(json.dumps(self.response), status=404)
+            return self.response
+            #return HttpResponse(json.dumps(self.response), status=404)
 
     """
     Function to delete the note
     """
 
     def delete_note(self, request, note_id):
+        """
+
+        :param request: for deleting note
+        :param note_id: id of the note
+        :return: makes is_trash to True
+
+        """
 
 
         user = request.user
@@ -373,8 +394,9 @@ class NoteOperations:
             """
             getting the note with the given id
             """
+            print (note_id,"note idddddd")
             note = Note.objects.get(id=note_id, user_id=user.id)
-
+            print (note,"note objecttttttt")
             """
             making 'is_delete' to access it from Trash
             """

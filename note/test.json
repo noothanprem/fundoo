@@ -7,7 +7,7 @@
                     "is_archieve": false
                  },
     "notepost2": {
-                    "user": 15,
+                    "user_id": 15,
                     "title": "testnote2",
                     "note": "ghjnghngh",
                     "label": [
@@ -22,7 +22,7 @@
                     "is_archieve": false
                  },
     "notepost4": {
-                    "user": 15,
+                    "user_id": 15,
                     "title": "testnote4",
                     "note": "db dddddf",
                     "label": [
@@ -66,12 +66,23 @@
                     "user": 15
                  },
     "urls": {
-              "createnote": "/note/api/notes",
-              "updatenote": "/note/api/notes",
-              "createlabel": "/note/api/labels",
-              "updatelabel": "/note/api/labels"
-            }
-
+              "createnote": "/api/notes",
+              "updatenote": "/api/notes",
+              "createlabel": "/api/labels",
+              "updatelabel": "/api/labels",
+              "trash": "/api/trash",
+              "trash1": "/api/trash1",
+              "archieve": "/api/archieve",
+              "archieve1": "/api/archieve1",
+              "reminder": "/api/reminder",
+              "reminder1": "/api/reminder1"
+            },
+    "noteputdata1": {
+                    "title": "testput1",
+                    "note": "dfgbd",
+                    "url": "https://twitter.com/",
+                    "is_archieve": false
+                 }
   }
 
 ]

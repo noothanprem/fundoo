@@ -13,7 +13,6 @@ headers = {
     'Authorization': TEST_TOKEN
 }
 
-
 class TestNote:
 
      def test_note_post1(self):
@@ -69,25 +68,24 @@ class TestNote:
          url = BASE_URL + (data[0]['urls']['updatenote']) + "/"+(data[0]['notedelete3']['note_id'])
          response = requests.delete(url=url, headers=headers)
          assert response.status_code == 200
-
+     #
      def test_note_put1(self):
          url = BASE_URL + (data[0]['urls']['updatenote']) + "/"+(data[0]['noteput1']['note_id'])
-         input = data[0]['notepost1']
-         response = requests.delete(url=url, data=input, headers=headers)
+         input = data[0]['noteputdata1']
+         response = requests.put(url=url, data=input, headers=headers)
          assert response.status_code == 400
 
      def test_note_put2(self):
          url = BASE_URL + (data[0]['urls']['updatenote']) + "/"+(data[0]['noteput2']['note_id'])
-         input=data[0]['notepost1']
-         response = requests.delete(url=url, data=input,headers=headers)
+         input=data[0]['noteputdata1']
+         response = requests.put(url=url, data=input,headers=headers)
          assert response.status_code == 404
-
+     #
      def test_note_put3(self):
          url = BASE_URL + (data[0]['urls']['updatenote']) + "/"+(data[0]['noteput3']['note_id'])
-         input = data[0]['notepost1']
-         response = requests.delete(url=url, data=input, headers=headers)
-         assert response.status_code == 200
-
+         input = data[0]['noteputdata1']
+         response = requests.put(url=url, data=input, headers=headers)
+         assert response.status_code == 400
 
 class TestLabel:
 
@@ -108,3 +106,35 @@ class TestLabel:
         response = requests.put(url=url, data=input,headers=headers)
         assert response.status_code == 200
 
+class TestTrash:
+    def test_trash_get1(self):
+        url=BASE_URL+ (data[0]['urls']['trash'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 200
+
+    def test_trash_get2(self):
+        url=BASE_URL+(data[0]['urls']['trash1'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 404
+
+class TestArchieve:
+    def test_archieve_get1(self):
+        url=BASE_URL+(data[0]['urls']['archieve'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 200
+
+    def test_archieve_get2(self):
+        url=BASE_URL+(data[0]['urls']['archieve1'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 404
+
+class TestReminder:
+    def test_reminder_get1(self):
+        url=BASE_URL+(data[0]['urls']['reminder'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 200
+
+    def test_reminder_get2(self):
+        url=BASE_URL+(data[0]['urls']['reminder1'])
+        response=requests.get(url=url,headers=headers)
+        assert response.status_code == 404
