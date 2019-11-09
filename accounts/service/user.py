@@ -133,9 +133,9 @@ class UserOperations:
                     sending the mail
                     """
                     ee.emit('send_mail',recipient_email,mail_message)
-                    email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
+                    #email = EmailMessage(mail_subject, mail_message, to=[recipient_email])
 
-                    email.send()
+                    #email.send()
                     response = self.smd_response(True, 'Please check your mail for activating', [])
                     return response
         except SMTPException:

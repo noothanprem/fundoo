@@ -1240,3 +1240,20 @@ INFO 	:11-08 05:45:30 	:note.service.label 	:/home/admin81/fundoo/fundooproject/
 [11-08 08:34:44] p3021 {/home/admin81/fundoo/fundooproject/note/service/note.py:155} ERROR - note creation failed
 [11-08 08:42:16] p3633 {/home/admin81/fundoo/fundooproject/note/service/note.py:158} ERROR - note creation failed
 [11-08 08:42:55] p3633 {/home/admin81/fundoo/fundooproject/note/service/note.py:153} INFO - note created successfully
+[11-09 03:41:01] p7441 {/home/admin81/fundoo/fundooproject/note/service/label.py:67} INFO - note is created
+[11-09 03:41:01] p7441 {/home/admin81/fundoo/fundooproject/note/service/label.py:75} INFO - Label created successfully
+[11-09 04:50:11] p12773 {/home/admin81/fundoo/fundooproject/note/service/label.py:117} INFO - labels where fetched from redis
+[11-09 04:50:12] p12773 {/home/admin81/fundoo/fundooproject/note/service/label.py:117} INFO - labels where fetched from redis
+[11-09 04:50:26] p12773 {/home/admin81/fundoo/fundooproject/note/service/label.py:117} INFO - labels where fetched from redis
+[11-09 04:50:28] p12880 {/home/admin81/fundoo/fundooproject/note/service/label.py:117} INFO - labels where fetched from redis
+[11-09 04:54:27] p13207 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:57:25] p13689 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:57:37] p13794 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:57:38] p13794 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:57:39] p13794 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:58:20] p13860 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 04:58:37] p13948 {/home/admin81/fundoo/fundooproject/note/service/label.py:118} INFO - labels where fetched from redis
+[11-09 05:02:44] p14406 {/home/admin81/fundoo/fundooproject/note/service/label.py:223} ERROR - Exception occured while getting the Label object
+[11-09 05:11:18] p15056 {/home/admin81/fundoo/fundooproject/note/service/label.py:223} ERROR - Exception occured while getting the Label object
+[11-09 05:13:27] p15153 {/home/admin81/fundoo/fundooproject/note/service/note.py:154} INFO - note created successfully
+[11-09 05:20:07] p15153 {/home/admin81/fundoo/fundooproject/note/service/note.py:212} INFO - Data accessed from redis

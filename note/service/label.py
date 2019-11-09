@@ -43,7 +43,7 @@ class LabelOperations:
             gets the user from the request object
             """
             user=request.user
-            user_id=request.user
+            user_id=user.id
 
 
             """
@@ -62,7 +62,8 @@ class LabelOperations:
                 return self.response
             labelobject = Label.objects.create(name=name, user=userobject)
 
-            redis.hmset(user.id + "label", {labelobject.id: name})
+            string_userid=str(user_id)
+            redis.hmset(string_userid + "label", {labelobject.id: name})
             logger.info("note is created")
             """
             creating label
@@ -90,7 +91,7 @@ class LabelOperations:
         :return: returns all the labels of that particular user
         """
 
-
+        global label_name
         try:
             print ("Inside labelllllllllll")
             """
@@ -103,17 +104,22 @@ class LabelOperations:
             getting the labels of the user
             """
             user = request.user
-            redis_data = redis.hmget(user.id + "label")
-            if redis_data is None:
+            string_userid=str(user.id)
+            userlabels = redis.hvals(string_userid + "label")
+            userlabelsstring=str(userlabels)
+            print(userlabels,"from redisssss")
+
+            if userlabels is None:
+                print("redis data is none")
                 labels = Label.objects.filter(user_id=user.id)
-                label_name = [i.name for i in labels]
+                userlabelsstring = [i.name for i in labels]
                 logger.info("labels where fetched from database for user :%s", request.user)
 
             logger.info("labels where fetched from redis")
 
             self.response['success']=True
             self.response['message']="Read Operation Successfull"
-            self.response['data'].append(label_name)
+            self.response['data'].append(userlabelsstring)
         except Label.DoesNotExist:
             logger.info("Exception occured while getting the Label")
 
@@ -156,7 +162,8 @@ class LabelOperations:
             label_object.name=body_unicode_dict['name']
 
             label_object.save()
-            redis.hmset(user.id + "label", {label_object.id: label_id})
+            string_user_id=str(user.id)
+            redis.hmset(string_user_id + "label", {label_object.id: label_id})
 
             logger.info("Label Updated Successfully")
             self.response['success'] = True
@@ -206,7 +213,8 @@ class LabelOperations:
             deleting the label
             """
             label_object.delete()
-            redis.hdel(user.id + "label", label_id)
+            string_user_id=str(user_id)
+            redis.hdel(string_user_id + "label", label_id)
             logger.info("Label Deleted Successfully")
             self.response['success'] = True
             self.response['message'] = "Label Deleted Successfully"

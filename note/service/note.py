@@ -146,8 +146,10 @@ class NoteOperations:
             """
             saving to redis with the key as note_id
             """
+            string_user_id=str(user.id)
             #redis.set(create_note.id, str(json.dumps(serializer.data)))
-            sets=redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
+            #sets=redis.hset("Notes",create_note.id,str(json.dumps(serializer.data)))
+            redis.hmset(string_user_id + "note",{create_note.id: str(json.dumps(serializer.data))})
 
             logger.info("note created successfully")
             self.response['success']=True
@@ -172,22 +174,24 @@ class NoteOperations:
         try:
 
             user = request.user
+            string_user_id=str(user.id)
             print (note_id,"note iddddddd")
             """
             getting note from redis with the given id
             """
             #redis_data = redis.get(str(note_id)).decode('utf-8')
-            redis_data=redis.hget("Notes",str(note_id))
+            redis_data=redis.hvals(string_user_id+"note")
 
             """
             getting the data from the database if redis reading fails
             """
+            str_note_data=str(redis_data)
             if redis_data is None:
 
                 note = Note.objects.filter(id=note_id)
                 note_contents = note.values()
                 print(note_contents, "note contentsssssss")
-                note_content = note_contents[0]
+                str_note_data = note_contents[0]
                 logger.info("Data accessed from database")
 
         except Note.DoesNotExist:
@@ -208,7 +212,7 @@ class NoteOperations:
         logger.info("Data accessed from redis")
         self.response['success'] = True
         self.response['message'] = "Read Operation Successful"
-        self.response['data'].append(redis_data)
+        self.response['data'].append(str_note_data)
         return self.response
 
 
@@ -360,8 +364,8 @@ class NoteOperations:
                 saving
                 """
                 update_note = serializer.save()
-
-                redis.hset("Notes",update_note.id, str(json.dumps(serializer.data)))
+                string_user_id=str(user.id)
+                redis.hmset(string_user_id + "note",{update_note.id: str(json.dumps(serializer.data))})
                 logger.info("Update Operation Successful")
                 print ("update operation successful")
                 self.response['success'] = True

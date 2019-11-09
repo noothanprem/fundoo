@@ -64,7 +64,7 @@ class UploadImage(GenericAPIView):
         """
         try:
             image = request.FILES.get('imgs')
-            print(image, "imaaaaaageeeeeeeeeeeeee")
+
 
             """
             calls the upload_file() method inside Lib file
