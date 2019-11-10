@@ -3,12 +3,14 @@ from __future__ import unicode_literals
 import logging
 import pdb
 
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from requests import Response
 from rest_framework.generics import GenericAPIView
 from rest_framework.permissions import IsAuthenticated
 from django.conf import settings
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from .models import Note
 from django.contrib import auth
 from django.contrib import messages
 from django.http import HttpResponse
@@ -305,6 +307,23 @@ class CreateNote(GenericAPIView):
 
     serializer_class = NoteSerializer
 
+    def get(self,request):
+        all_notes=Note.objects.all()
+        page = request.GET.get('page')
+        paginator = Paginator(all_notes, 1)
+
+        try:
+            notes = paginator.page(page)
+        except PageNotAnInteger:
+            logger.warning("got error for getting note for user %s", str(PageNotAnInteger))
+            notes = paginator.page(1)
+        except EmptyPage:
+            logger.warning("got error for getting note",EmptyPage)
+            notes = paginator.page(paginator.num_pages)
+        logger.info("all the notes are rendered to html page")
+
+        return render(request, 'note_list.html', {'notes': notes})
+
 
     def post(self, request):
         """
@@ -359,6 +378,10 @@ class UpdateNote(GenericAPIView):
         else:
             return HttpResponse(json.dumps(response))
 
+
+
+
+
     def put(self,request,note_id):
 
         """
@@ -405,6 +428,7 @@ class UpdateNote(GenericAPIView):
         else:
 
             return HttpResponse(json.dumps(response))
+
 
 
 

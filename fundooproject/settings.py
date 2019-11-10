@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'social_django',
     'colorful',
     'django_social_share',
+    'bootstrap3',
     'note',
 
 ]

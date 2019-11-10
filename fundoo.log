@@ -1257,3 +1257,132 @@ INFO 	:11-08 05:45:30 	:note.service.label 	:/home/admin81/fundoo/fundooproject/
 [11-09 05:11:18] p15056 {/home/admin81/fundoo/fundooproject/note/service/label.py:223} ERROR - Exception occured while getting the Label object
 [11-09 05:13:27] p15153 {/home/admin81/fundoo/fundooproject/note/service/note.py:154} INFO - note created successfully
 [11-09 05:20:07] p15153 {/home/admin81/fundoo/fundooproject/note/service/note.py:212} INFO - Data accessed from redis
+[11-10 09:53:24] p25187 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 09:53:25] p25187 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 09:53:58] p25313 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 09:53:58] p25313 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 09:54:14] p25370 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 09:54:14] p25370 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 09:58:06] p25692 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 09:58:06] p25692 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 09:58:57] p25692 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 09:58:57] p25692 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:03:55] p26252 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:03:55] p26252 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:11:31] p26996 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:11:31] p26996 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:11:49] p26996 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:11:49] p26996 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:12:10] p27092 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:12:10] p27092 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:33] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:33] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:34] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:34] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:34] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:34] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:14:35] p27347 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:15:16] p27455 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:15:16] p27455 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:15:17] p27455 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got <class 'django.core.paginator.PageNotAnInteger'> error for getting note for user ojas
+[11-10 10:15:17] p27455 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page for user ojas
+[11-10 10:18:02] p27843 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:18:31] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:18:31] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:18:31] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:18:31] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:18:32] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:18:32] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:18:32] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:18:32] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:18:33] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:18:33] p27937 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:34] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:34] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:35] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:35] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:35] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:35] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:36] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:36] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:36] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:36] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:37] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:37] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:37] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:37] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:38] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:38] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:19:38] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:19:38] p28042 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:32:47] p29204 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:32:47] p29204 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:39:26] p29763 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:39:26] p29763 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:39:40] p29763 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:39:40] p29763 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:41:53] p30119 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:41:53] p30119 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:43:16] p30325 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:43:16] p30325 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:44:37] p30491 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:44:37] p30491 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:44:46] p30592 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:44:46] p30592 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:49:21] p31046 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:49:21] p31046 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:50:41] p31225 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:50:41] p31225 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:50:43] p31225 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:50:43] p31225 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:54:31] p31580 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:54:31] p31580 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:54:35] p31580 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:54:35] p31580 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 10:55:35] p31762 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 10:55:35] p31762 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:02:13] p32723 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:02:13] p32723 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:08:13] p955 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:08:13] p955 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:09:53] p1235 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:09:53] p1235 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:10:44] p1379 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:10:44] p1379 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:11:26] p1379 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:11:26] p1379 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:11:35] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:11:35] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:11:36] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:11:36] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:11:37] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:11:37] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:11:37] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:11:37] p1483 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:12:15] p1611 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:12:15] p1611 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:12:37] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:12:37] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:04] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:14:04] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:05] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:14:05] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:05] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:14:05] p1737 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:13] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-10 11:14:13] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:15] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:16] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:17] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:17] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:18] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:20] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:20] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:21] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:22] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-10 11:14:23] p1907 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page

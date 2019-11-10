@@ -31,7 +31,7 @@ def login_decorator(function):
             user = request.COOKIES.get(settings.SESSION_COOKIE_NAME)
             print (user,"user inside decoraatorr")
             if user:
-
+                print("Inside userrrr")
                 return function(request, *args, **kwargs)
             else:
                 return HttpResponse(json.dumps(response))
