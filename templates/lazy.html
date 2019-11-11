@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <style>
+        img {
+	            opacity: 1;
+	            transition: opacity 0.3s;
+            }
+
+        img[data-src] {
+	        opacity: 0;
+        }
+    </style>
+    <noscript data-src="abc.jpg">
+    <img src="abc.jpg" data-src="" alt="">
+    </noscript>
+</body>
+<script>
+ [].forEach.call(document.querySelectorAll('noscript'), function(noscript) {
+	var img = new Image();
+	img.setAttribute('data-src', '');
+	img.parentNode.insertBefore(img, noscript);
+	img.onload = function() {
+		img.removeAttribute('data-src');
+	};
+	img.src = noscript.getAttribute('data-src');
+});
+</script>
+</html>

@@ -12,5 +12,6 @@ urlpatterns=[
     path('notes/<note_id>',views.UpdateNote.as_view(), name='updatenote_view'),
     path('trash',views.Trash.as_view(),name='trashview'),
     path('archieve',views.Archieve.as_view(), name="archieveview"),
-    path('reminder',views.Reminder.as_view(), name="reminderveview")
+    path('reminder',views.Reminder.as_view(), name="reminderveview"),
+    path('lazy',views.LazyLoadng.as_view(),name='lazyloading')
 ]

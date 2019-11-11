@@ -310,7 +310,7 @@ class CreateNote(GenericAPIView):
     def get(self,request):
         all_notes=Note.objects.all()
         page = request.GET.get('page')
-        paginator = Paginator(all_notes, 1)
+        paginator = Paginator(all_notes, 2)
 
         try:
             notes = paginator.page(page)
@@ -430,5 +430,7 @@ class UpdateNote(GenericAPIView):
             return HttpResponse(json.dumps(response))
 
 
-
+class LazyLoadng(GenericAPIView):
+    def get(self,request):
+        return render(request,'lazy.html')
 
