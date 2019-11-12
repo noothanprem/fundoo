@@ -432,5 +432,5 @@ class UpdateNote(GenericAPIView):
 
 class LazyLoadng(GenericAPIView):
     def get(self,request):
-        return render(request,'lazy.html')
+        return render(request,'newlazy.html')
 
