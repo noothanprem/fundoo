@@ -32,7 +32,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.219.66.15']
 
 # Application definition
 
@@ -257,3 +257,5 @@ ACCOUNT_EMAIL_REQUIRED = True
 Token=os.getenv('Token')
 BASE_URL=os.getenv('BASE_URL')
 TEST_TOKEN=os.getenv('TEST_TOKEN')
+
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
