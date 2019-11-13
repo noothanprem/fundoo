@@ -1564,3 +1564,22 @@ INFO 	:11-08 05:45:30 	:note.service.label 	:/home/admin81/fundoo/fundooproject/
 [11-11 05:43:43] p21901 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
 [11-11 05:43:47] p21901 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
 [11-11 05:43:55] p21901 {/home/admin81/fundoo/fundooproject/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 07:38:25] p28303 {/home/admin81/fundooproject/fundoo/note/service/label.py:118} INFO - labels where fetched from redis
+[11-13 08:11:10] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-13 08:11:10] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:00] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:318} WARNING - got error for getting note for user <class 'django.core.paginator.PageNotAnInteger'>
+[11-13 08:12:00] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:02] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:07] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:09] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:13] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:17] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:19] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:20] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:23] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:25] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:26] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:27] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:28] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:29] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-13 08:12:29] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
