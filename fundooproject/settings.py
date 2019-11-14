@@ -254,8 +254,25 @@ SOCIAL_AUTH_EMAIL_REQUIRED = True
 SOCIAL_AUTH_GITHUB_SCOPE = ['user:email']
 ACCOUNT_EMAIL_REQUIRED = True
 
+
+
 Token=os.getenv('Token')
 BASE_URL=os.getenv('BASE_URL')
 TEST_TOKEN=os.getenv('TEST_TOKEN')
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+#CELERY_BROKER_URL = 'amqp://localhost'
+#CELERY_RESULT_BACKEND = "amqp"
+#CELERY_ACCEPT_CONTENT = ['json']
+#CELERY_TASK_SERIALIZER = 'json'
+#CELERY_AMOP_TASK_RESULT_EXPIRES = 1000
+
+# For RabbitMQ
+BROKER_URL = 'amqp://[ipaddress]'
+CELERY_RESULT_BACKEND = 'amqp://[ipaddress]'
+# Celery Data Format
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Asia/Kolkata'

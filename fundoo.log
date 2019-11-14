@@ -1583,3 +1583,4 @@ INFO 	:11-08 05:45:30 	:note.service.label 	:/home/admin81/fundoo/fundooproject/
 [11-13 08:12:28] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
 [11-13 08:12:29] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
 [11-13 08:12:29] p28303 {/home/admin81/fundooproject/fundoo/note/views.py:323} INFO - all the notes are rendered to html page
+[11-14 11:18:08] p17691 {/home/admin81/fundooproject/fundoo/note/service/note.py:154} INFO - note created successfully

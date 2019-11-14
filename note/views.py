@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 import logging
 import pdb
+from random import randint
 
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from requests import Response
@@ -36,6 +37,12 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.utils.decorators import method_decorator
 from .decorators import login_decorator
+
+from django.shortcuts import render
+from django.views.decorators.http import require_http_methods
+from django.core.mail import send_mail
+from note.tasks import send_feedback_email_task
+
 
 redisobject=RedisOperation()
 redis=redisobject.r
@@ -433,4 +440,24 @@ class UpdateNote(GenericAPIView):
 class LazyLoadng(GenericAPIView):
     def get(self,request):
         return render(request,'newlazy.html')
+
+
+class ReminderNotification(GenericAPIView):
+    def get(self,request):
+        user=request.user
+        string_user_id=str(user.id)
+        subject="email for reminder"
+        message="You have set a reminder at this time"
+        sender="noothanprem@gmail.com"
+        num=randint(1,10)
+        if(num %2 == 0):
+            send_feedback_email_task.delay(subject,message,sender,["noothan627@gmail.com"])
+            print("Email sent successfully")
+        else:
+            print("number is odd")
+
+
+
+
+
 
