@@ -3,7 +3,7 @@ from django.test import TestCase
 import requests
 import json
 import pytest
-from fundooproject.settings import BASE_URL,TEST_TOKEN
+from fundoo_notes.settings import BASE_URL,TEST_TOKEN
 #for testing note functions
 with open("test.json") as f:
     data=json.load(f)

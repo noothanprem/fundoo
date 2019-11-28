@@ -1,6 +1,6 @@
 import redis
 from django.http import HttpResponse
-from .Lib.redisfunc import RedisOperations
+from .lib.redisfunc import RedisOperations
 rds = redis.StrictRedis(host='localhost', port=6379, db=0)
 
 #decorator to check whether the token is valid or not

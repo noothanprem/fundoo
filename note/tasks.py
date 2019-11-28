@@ -1,7 +1,7 @@
 from celery.decorators import task
 from celery.utils.log import get_task_logger
 
-from .Lib.test import send_reminder_mail
+from .lib.test import send_reminder_mail
 
 logger = get_task_logger(__name__)
 

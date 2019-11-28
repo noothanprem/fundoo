@@ -1,7 +1,7 @@
 import requests
 import json
 
-with open("/home/admin81/fundoo/fundooproject/accounts/test.json") as f:
+with open("/home/admin81/fundoo/fundoo_notes/accounts/test.json") as f:
     data=json.load(f)
 
 print(data)

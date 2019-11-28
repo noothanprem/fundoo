@@ -24,7 +24,7 @@ from django_short_url.views import get_surl
 from django_short_url.models import ShortURL
 from .decorators import token_required
 import redis
-from .Lib.redisfunc import RedisOperations
+from .lib.redisfunc import RedisOperations
 from django.core.exceptions import PermissionDenied,ObjectDoesNotExist
 from django.http import HttpResponseRedirect
 from accounts.service import user
@@ -124,7 +124,7 @@ def activate(request, token):
 
 
 def sociallogin(request):
-    return render(request, 'sociallogin.html')
+    return render(request, 'social_login.html')
 
 def home(request):
     return render(request, 'home.html')

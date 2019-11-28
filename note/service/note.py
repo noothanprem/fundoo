@@ -3,9 +3,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Count
 from django.http import HttpResponse
 from note.models import Note, Label
-from note.Lib.redisfunction import RedisOperation
+from note.lib.redisfunction import RedisOperation
 from note.serializer import NoteSerializer
-from fundooproject.settings import file_handler
+from fundoo_notes.settings import file_handler
 import json
 import logging
 

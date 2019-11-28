@@ -1,6 +1,0 @@
-i
-pythonS1066/Merge this if statement with the enclosing one. 2CC :
-õê<< 	enclosingi
-pythonS1066/Merge this if statement with the enclosing one. 2GG :
-õêFF 
-	enclosing

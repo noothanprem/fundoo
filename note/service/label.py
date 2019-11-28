@@ -5,8 +5,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from note.models import Label
 import json
 import logging
-from fundooproject.settings import file_handler
-from note.Lib.redisfunction import RedisOperation
+from fundoo_notes.settings import file_handler
+from note.lib.redisfunction import RedisOperation
 
 redisobject = RedisOperation()
 redis = redisobject.r

@@ -25,13 +25,13 @@ from django_short_url.views import get_surl
 import templates
 from django_short_url.models import ShortURL
 import os
-from accounts.Lib.redisfunc import RedisOperations
+from accounts.lib.redisfunc import RedisOperations
 from django.core.exceptions import PermissionDenied, ObjectDoesNotExist
 import os
 from .jwt import GenerateToken
 from jwt.exceptions import DecodeError
 from redis.exceptions import ConnectionError, AuthenticationError
-from accounts.Lib.eventemitter import ee
+from accounts.lib.eventemitter import ee
 from validate_email import validate_email
 
 

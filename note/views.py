@@ -26,13 +26,13 @@ from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 import boto3
 
-from fundooproject.settings import file_handler
+from fundoo_notes.settings import file_handler
 from .serializer import UploadImageSerializer, NoteShareSerializer, NoteSerializer, LabelSerializer
-from .Lib.amazon_s3_file import UploadImage
+from .lib.amazon_s3_file import UploadImage
 from .models import Note, Label
 from .service.label import LabelOperations
 from .service.note import NoteOperations
-from .Lib.redisfunction import RedisOperation
+from .lib.redisfunction import RedisOperation
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils import timezone
 from django.utils.decorators import method_decorator
@@ -76,7 +76,7 @@ class UploadImage(GenericAPIView):
 
 
             """
-            calls the upload_file() method inside Lib file
+            calls the upload_file() method inside lib file
             """
             response = uploadclassobject.upload_file(image)
             # returns the responses
@@ -102,7 +102,7 @@ class NoteShare(GenericAPIView):
         """
         """
         
-        getting the title and note from notesupload.html
+        getting the title and note from notes_upload.html
         """
         title = request.data['title']
         note = request.data['note']
@@ -113,7 +113,7 @@ class NoteShare(GenericAPIView):
         if title == "" or note == "":
             response = self.smd_response(False, 'Please fill the fields', '')
             return HttpResponse(json.dumps(response))
-        return render(request, 'notesupload.html', {'title': title, 'note': note})
+        return render(request, 'notes_upload.html', {'title': title, 'note': note})
 
 @method_decorator(login_decorator, name='dispatch')
 class Trash(GenericAPIView):
@@ -439,7 +439,7 @@ class UpdateNote(GenericAPIView):
 
 class LazyLoadng(GenericAPIView):
     def get(self,request):
-        return render(request,'newlazy.html')
+        return render(request,'lazy_loading.html')
 
 
 class ReminderNotification(GenericAPIView):
