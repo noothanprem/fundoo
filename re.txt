@@ -10,7 +10,7 @@ contextlib2==0.6.0
 coreapi==2.3.3
 coreschema==0.0.4
 coverage==4.5.4
-Django==1.11.25
+Django==1.11.29
 django-admin==2.0.0
 django-cors-headers==3.0.2
 django-excel-response2==2.0.8
